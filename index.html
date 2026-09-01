@@ -4,3211 +4,2133 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KPI Dosen Akuntansi - UNPAM Serang</title>
+<title>KPI Dosen - Program Studi Akuntansi</title>
+
+<!-- WORD LIBRARY -->
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 
 <style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
 
 *{
     box-sizing:border-box;
 }
 
-:root{
-    --pink-dark:#b92f68;
-    --pink:#df4f86;
-    --pink-light:#ffe2ed;
-    --pink-soft:#fff5f9;
-    --pink-pale:#fffafd;
-    --text:#42343c;
-    --muted:#8f7884;
-    --border:#f0d7e2;
-    --white:#ffffff;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
 body{
     margin:0;
-    min-height:100vh;
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    color:var(--text);
-
+    font-family:"Segoe UI",Arial,sans-serif;
     background:
-        linear-gradient(
-            135deg,
-            #fff8fb 0%,
-            #ffedf4 50%,
-            #fffafd 100%
-        );
+        radial-gradient(circle at 95% 15%,#ffdbea 0,transparent 18%),
+        radial-gradient(circle at 0% 70%,#ffe5f0 0,transparent 15%),
+        #fff7fa;
+    color:#553344;
 }
 
-
-/* =========================================================
-   BACKGROUND DECORATION
-========================================================= */
-
-.bubble{
-    position:fixed;
-    border-radius:50%;
-    pointer-events:none;
-    z-index:-1;
+.container{
+    width:94%;
+    max-width:1450px;
+    margin:35px auto;
 }
 
-.bubble1{
-    width:260px;
-    height:260px;
-    right:-100px;
-    top:100px;
-    background:#ffdce9;
-    opacity:.65;
-}
-
-.bubble2{
-    width:200px;
-    height:200px;
-    left:-100px;
-    bottom:100px;
-    background:#ffe5ef;
-    opacity:.7;
-}
-
-.bubble3{
-    width:90px;
-    height:90px;
-    right:10%;
-    top:45%;
-    background:#ffd2e2;
-    opacity:.45;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
+/* HEADER */
 
 .header{
-    background:
-        linear-gradient(
-            135deg,
-            #a92b61,
-            #df4f86
-        );
-
+    background:linear-gradient(135deg,#c92f72,#ed5b91);
     color:white;
-
-    padding:24px 6%;
-
-    box-shadow:
-        0 8px 25px
-        rgba(185,47,104,.18);
-}
-
-.header-inner{
-    max-width:1200px;
-    margin:auto;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.logo{
-    width:58px;
-    height:58px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:18px;
-
-    background:
-        rgba(255,255,255,.17);
-
-    border:
-        1px solid
-        rgba(255,255,255,.35);
-
-    font-size:34px;
-}
-
-.small-title{
-    font-size:11px;
-    letter-spacing:2px;
-    opacity:.85;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 12px 35px rgba(201,47,114,.25);
+    margin-bottom:25px;
 }
 
 .header h1{
-    margin:3px 0;
-    font-size:28px;
+    margin:0;
+    font-size:30px;
 }
 
 .header p{
-    margin:0;
-    font-size:13px;
-    opacity:.88;
+    margin:8px 0 0;
+    opacity:.9;
 }
 
-.header-badge{
-    padding:11px 18px;
-    border-radius:30px;
-
-    background:
-        rgba(255,255,255,.15);
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
-    font-size:12px;
-}
-
-
-/* =========================================================
-   CONTAINER
-========================================================= */
-
-.container{
-    width:min(
-        1200px,
-        calc(100% - 30px)
-    );
-
-    margin:28px auto 50px;
-}
-
-
-/* =========================================================
-   WELCOME
-========================================================= */
-
-.welcome{
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #fff1f6
-        );
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:22px;
-
-    padding:28px 30px;
-
-    margin-bottom:18px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    box-shadow:
-        0 10px 30px
-        rgba(181,47,103,.07);
-}
-
-.welcome-label{
-    color:var(--pink-dark);
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:1.5px;
-}
-
-.welcome h2{
-    margin:6px 0 5px;
-    font-size:28px;
-}
-
-.welcome p{
-    margin:0;
-    color:var(--muted);
-    font-size:14px;
-}
-
-.welcome-heart{
-    width:75px;
-    height:75px;
-
-    border-radius:25px;
-
-    background:#ffe0eb;
-    color:var(--pink-dark);
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:40px;
-}
-
-
-/* =========================================================
-   CARD
-========================================================= */
+/* CARD */
 
 .card{
-    background:
-        rgba(255,255,255,.97);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:20px;
-
-    padding:25px;
-
-    margin-bottom:18px;
-
-    box-shadow:
-        0 8px 28px
-        rgba(181,47,103,.06);
+    background:white;
+    border:1px solid #f4d8e4;
+    border-radius:24px;
+    padding:28px;
+    margin-bottom:25px;
+    box-shadow:0 10px 30px rgba(139,51,91,.07);
 }
 
-
-/* =========================================================
-   SECTION HEADING
-========================================================= */
-
-.section-heading{
+.section-title{
     display:flex;
-    gap:13px;
-    margin-bottom:23px;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
 }
 
 .number{
-    min-width:38px;
-    height:38px;
-
-    background:var(--pink-light);
-    color:var(--pink-dark);
-
-    border-radius:12px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-weight:800;
-    font-size:12px;
-}
-
-.section-heading h3{
-    margin:1px 0 3px;
-    font-size:19px;
-}
-
-.section-heading p{
-    margin:0;
-    color:var(--muted);
-    font-size:13px;
-}
-
-
-/* =========================================================
-   FORM
-========================================================= */
-
-.form-grid{
-    display:grid;
-    gap:16px;
-    margin-bottom:16px;
-}
-
-.form-grid.two{
-    grid-template-columns:repeat(2,1fr);
-}
-
-.form-grid.three{
-    grid-template-columns:repeat(3,1fr);
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:7px;
-
-    font-size:12px;
-    font-weight:750;
-
-    color:#6b5561;
-}
-
-input,
-select{
-
-    width:100%;
-
-    border:
-        1px solid
-        #ead6df;
-
-    background:#fffafd;
-
-    border-radius:11px;
-
-    padding:12px 13px;
-
-    font-size:13px;
-
-    color:var(--text);
-
-    transition:.2s ease;
-}
-
-input:focus,
-select:focus{
-
-    outline:none;
-
-    border-color:var(--pink);
-
-    box-shadow:
-        0 0 0 4px
-        rgba(233,93,145,.1);
-}
-
-input[readonly]{
-
-    background:#fff1f6;
-
-    color:var(--pink-dark);
-
-    font-weight:650;
-}
-
-
-/* =========================================================
-   TAMBAH DOSEN
-========================================================= */
-
-.new-dosen{
-
-    margin-top:12px;
-
-    padding:19px;
-
-    border:
-        1px dashed
-        #e8a8bd;
-
-    background:#fff5f8;
-
+    width:48px;
+    height:48px;
     border-radius:15px;
-}
-
-.new-title{
-
     display:flex;
-    gap:10px;
-
-    margin-bottom:16px;
-}
-
-.new-title span{
-    font-size:25px;
-}
-
-.new-title h4{
-    margin:0 0 3px;
-}
-
-.new-title p{
-    margin:0;
-    color:var(--muted);
-    font-size:12px;
-}
-
-.hidden{
-    display:none;
-}
-
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-.btn{
-
-    border:none;
-
-    border-radius:10px;
-
-    padding:11px 17px;
-
-    font-weight:750;
-
-    cursor:pointer;
-
-    transition:.2s ease;
-}
-
-.btn:hover{
-    transform:translateY(-1px);
-}
-
-.btn-pink{
-    background:var(--pink);
-    color:white;
-}
-
-.btn-white{
-    background:white;
-    color:var(--pink-dark);
-
-    border:
-        1px solid
-        #e7ccd7;
-}
-
-
-/* =========================================================
-   INFO
-========================================================= */
-
-.info-note{
-
-    display:flex;
-
-    gap:10px;
-
-    align-items:flex-start;
-
-    background:#fff3f7;
-
-    border:
-        1px solid
-        #f7dce6;
-
-    color:#7e6570;
-
-    border-radius:12px;
-
-    padding:12px 14px;
-
-    margin-bottom:17px;
-
-    font-size:12px;
-}
-
-
-/* =========================================================
-   TABLE
-========================================================= */
-
-.table-container{
-    overflow-x:auto;
-
-    border-radius:13px;
-
-    border:
-        1px solid
-        #f0dfe6;
-}
-
-table{
-
-    width:100%;
-
-    min-width:1050px;
-
-    border-collapse:collapse;
-
-    font-size:12px;
-}
-
-thead{
-
-    background:
-        linear-gradient(
-            135deg,
-            #bd3470,
-            #e85c91
-        );
-
-    color:white;
-}
-
-th{
-
-    padding:12px 10px;
-
-    text-align:left;
-
-    font-size:11px;
-
-    white-space:nowrap;
-}
-
-td{
-
-    padding:10px;
-
-    border-bottom:
-        1px solid
-        #f3e5eb;
-
-    vertical-align:middle;
-}
-
-tbody tr:hover{
-    background:#fff8fb;
-}
-
-td input{
-
-    margin:0;
-
-    min-width:85px;
-
-    padding:8px 9px;
-
-    border-radius:8px;
-
-    background:white;
-}
-
-.score{
-
-    text-align:center;
-
-    font-weight:850;
-
-    color:var(--pink-dark);
-}
-
-.nilai{
-
-    font-weight:850;
-
-    color:#744c5e;
-}
-
-
-/* =========================================================
-   RESULT
-========================================================= */
-
-.result-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:15px;
-
-    margin-top:18px;
-}
-
-.result-card{
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff0f5,
-            #fff9fb
-        );
-
-    border:
-        1px solid
-        #f5d6e1;
-
-    border-radius:16px;
-
-    padding:18px;
-}
-
-.result-card span{
-
-    display:block;
-
-    font-size:11px;
-
-    font-weight:800;
-
-    color:var(--pink-dark);
-}
-
-.result-card strong{
-
-    display:block;
-
-    margin-top:5px;
-
-    font-size:29px;
-
-    color:#6b344d;
-}
-
-.result-card small{
-
-    color:var(--muted);
-
-    font-size:11px;
-}
-
-
-/* =========================================================
-   CHECKBOX
-========================================================= */
-
-.check-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:12px;
-}
-
-.check-item{
-
-    display:flex;
-
     align-items:center;
-
-    gap:9px;
-
-    padding:13px;
-
-    background:#fff8fb;
-
-    border:
-        1px solid
-        #f1dce5;
-
-    border-radius:11px;
-
-    cursor:pointer;
-
-    font-size:12px;
-
-    color:#6a5360;
+    justify-content:center;
+    background:#ffe0ec;
+    color:#c92f72;
+    font-weight:bold;
 }
 
-.check-item input{
-
-    width:auto;
-
-    accent-color:var(--pink);
-}
-
-
-/* =========================================================
-   ACTION
-========================================================= */
-
-.action-area{
-
-    display:flex;
-
-    justify-content:flex-end;
-
-    gap:10px;
-
-    margin-top:5px;
-}
-
-.download-btn{
-
-    border:none;
-
-    background:
-        linear-gradient(
-            135deg,
-            #b92e68,
-            #e85c91
-        );
-
-    color:white;
-
-    padding:14px 21px;
-
-    border-radius:12px;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 7px 20px
-        rgba(185,46,104,.2);
-
-    transition:.2s ease;
-}
-
-.download-btn:hover{
-    transform:translateY(-2px);
-}
-
-.reset-btn{
-
-    border:
-        1px solid
-        #e5ced8;
-
-    background:white;
-
-    color:#79596a;
-
-    padding:14px 18px;
-
-    border-radius:12px;
-
-    font-weight:750;
-
-    cursor:pointer;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-
-    text-align:center;
-
-    padding:30px 15px;
-
-    color:#9b7e8c;
-
-    font-size:12px;
-}
-
-footer .heart{
-
-    color:var(--pink);
-
+.section-title h2{
+    margin:0;
     font-size:22px;
 }
 
-footer p{
-    margin:4px 0;
+.section-title p{
+    margin:4px 0 0;
+    color:#9b7b89;
 }
 
+/* FORM */
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    font-weight:700;
+    margin-bottom:8px;
+    color:#693b51;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:13px 15px;
+    border-radius:12px;
+    border:1px solid #edcedb;
+    outline:none;
+    font-size:15px;
+    color:#553344;
+    background:#fffafd;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#df4e88;
+    box-shadow:0 0 0 3px rgba(223,78,136,.12);
+}
+
+textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+/* KPI TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    min-width:1050px;
+}
+
+thead th{
+    background:linear-gradient(135deg,#c92f72,#df4f87);
+    color:white;
+    padding:15px 12px;
+    text-align:left;
+    font-size:14px;
+}
+
+thead th:first-child{
+    border-radius:15px 0 0 0;
+}
+
+thead th:last-child{
+    border-radius:0 15px 0 0;
+}
+
+tbody td{
+    padding:15px 12px;
+    border-bottom:1px solid #f3e0e8;
+    vertical-align:middle;
+}
+
+tbody tr:nth-child(even){
+    background:#fff8fb;
+}
+
+.target{
+    white-space:nowrap;
+}
+
+.bobot{
+    font-weight:bold;
+}
+
+.capaian{
+    width:100%;
+    min-width:160px;
+}
+
+.skor,
+.nilai{
+    font-weight:800;
+    color:#c92f72;
+    text-align:center;
+}
+
+/* RESULT */
+
+.result-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.result-box{
+    background:linear-gradient(135deg,#fff0f6,#fff9fb);
+    border:1px solid #f4cfdd;
+    border-radius:20px;
+    padding:25px;
+}
+
+.result-title{
+    color:#c92f72;
+    font-weight:bold;
+}
+
+.result-value{
+    font-size:36px;
+    font-weight:800;
+    margin-top:10px;
+    color:#6c304d;
+}
+
+.result-small{
+    color:#9c7c8c;
+}
+
+/* BUKTI */
+
+.evidence-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.evidence{
+    padding:16px;
+    border:1px solid #f0d7e2;
+    border-radius:15px;
+    background:#fff8fb;
+}
+
+.evidence label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+}
+
+.evidence input{
+    width:auto;
+    accent-color:#d83d7b;
+}
+
+/* CATATAN */
+
+.note-box{
+    margin-top:20px;
+}
+
+.note-box label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+    color:#693b51;
+}
+
+.note-help{
+    font-size:13px;
+    color:#9b7b89;
+    margin-top:7px;
+}
+
+/* BUTTON */
+
+.actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    margin:25px 0;
+}
+
+button{
+    border:none;
+    padding:15px 25px;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.btn-download{
+    background:linear-gradient(135deg,#c92f72,#e9548c);
+    color:white;
+    box-shadow:0 10px 25px rgba(201,47,114,.25);
+}
+
+.btn-reset{
+    background:white;
+    color:#7a5062;
+    border:1px solid #e7cbd7;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#a18491;
+}
+
+.footer span{
+    color:#e04b87;
+}
+
+/* RESPONSIVE */
 
 @media(max-width:850px){
 
-    .header-inner{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .header-badge{
-        display:none;
-    }
-
-    .form-grid.two,
-    .form-grid.three{
-        grid-template-columns:1fr;
-    }
-
-    .check-grid{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:600px){
-
-    .container{
-        width:calc(100% - 20px);
-        margin-top:15px;
-    }
-
-    .card{
-        padding:17px;
-    }
-
-    .welcome{
-        padding:20px;
-    }
-
-    .welcome-heart{
-        display:none;
-    }
-
+    .form-grid,
     .result-grid{
         grid-template-columns:1fr;
     }
 
-    .check-grid{
+    .evidence-grid{
         grid-template-columns:1fr;
     }
 
-    .action-area{
-        flex-direction:column;
+    .container{
+        width:96%;
     }
 
-    .download-btn,
-    .reset-btn{
-        width:100%;
+    .header h1{
+        font-size:24px;
     }
+
 }
 
 </style>
 </head>
 
-
 <body>
 
+<div class="container">
 
-<div class="bubble bubble1"></div>
-<div class="bubble bubble2"></div>
-<div class="bubble bubble3"></div>
+    <!-- HEADER -->
+    <div class="header">
+        <h1>💗 Sistem KPI Dosen</h1>
+        <p>Program Studi Akuntansi · Universitas Pamulang Kampus Serang</p>
+    </div>
 
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
+    <!-- DATA DOSEN -->
+    <div class="card">
 
-<header class="header">
+        <div class="section-title">
+            <div class="number">01</div>
 
-<div class="header-inner">
+            <div>
+                <h2>Data Dosen</h2>
+                <p>Masukkan identitas dosen yang dinilai.</p>
+            </div>
+        </div>
 
-<div class="brand">
 
-<div class="logo">
-♡
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Nama Dosen</label>
+
+                <select id="namaDosen" onchange="cekDosen()">
+
+                    <option value="">-- Pilih Nama Dosen --</option>
+
+                    <option>Fadli Nuryasin, S.E., M.Ak.</option>
+
+                    <option>Iroh Rahmawati, S.E., M.Ak.</option>
+
+                    <option>Shally Komilah, S.E., M.Ak.</option>
+
+                    <option value="lainnya">Lainnya</option>
+
+                </select>
+
+                <input
+                    id="namaManual"
+                    placeholder="Ketik nama dosen baru..."
+                    style="display:none;margin-top:10px;"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>NIDN / NUPTK</label>
+
+                <input
+                    id="nidn"
+                    placeholder="Masukkan NIDN / NUPTK"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Jabatan / Status</label>
+
+                <input
+                    id="jabatan"
+                    placeholder="Contoh: Dosen Tetap"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Periode Penilaian</label>
+
+                <input
+                    id="periode"
+                    placeholder="Contoh: Semester Ganjil 2026/2027"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- KPI -->
+    <div class="card">
+
+        <div class="section-title">
+
+            <div class="number">02</div>
+
+            <div>
+                <h2>Penilaian KPI</h2>
+                <p>Isi capaian masing-masing indikator.</p>
+            </div>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>No</th>
+                        <th>Komponen KPI</th>
+                        <th>Indikator</th>
+                        <th>Target</th>
+                        <th>Bobot</th>
+                        <th>Capaian</th>
+                        <th>Skor</th>
+                        <th>Nilai</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>1</td>
+
+                        <td>Pendidikan & Pengajaran</td>
+
+                        <td>
+                            Kehadiran dan pelaksanaan perkuliahan
+                        </td>
+
+                        <td class="target">
+                            ≥ 90%
+                        </td>
+
+                        <td class="bobot">
+                            30%
+                        </td>
+
+                        <td>
+                            <input
+                                class="capaian"
+                                type="number"
+                                min="0"
+                                max="100"
+                                value="0"
+                                oninput="hitung()"
+                            >
+                        </td>
+
+                        <td class="skor">0</td>
+
+                        <td class="nilai">0.00</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>2</td>
+
+                        <td>Pendidikan & Pengajaran</td>
+
+                        <td>
+                            Kelengkapan RPS, bahan ajar & nilai
+                        </td>
+
+                        <td class="target">
+                            100%
+                        </td>
+
+                        <td class="bobot">
+                            10%
+                        </td>
+
+                        <td>
+                            <input
+                                class="capaian"
+                                type="number"
+                                min="0"
+                                max="100"
+                                value="0"
+                                oninput="hitung()"
+                            >
+                        </td>
+
+                        <td class="skor">0</td>
+
+                        <td class="nilai">0.00</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>3</td>
+
+                        <td>Penelitian</td>
+
+                        <td>
+                            Penelitian & publikasi ilmiah
+                        </td>
+
+                        <td class="target">
+                            ≥ 1 kegiatan/tahun
+                        </td>
+
+                        <td class="bobot">
+                            20%
+                        </td>
+
+                        <td>
+                            <input
+                                class="capaian"
+                                type="number"
+                                min="0"
+                                max="100"
+                                value="0"
+                                oninput="hitung()"
+                            >
+                        </td>
+
+                        <td class="skor">0</td>
+
+                        <td class="nilai">0.00</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>4</td>
+
+                        <td>Pengabdian</td>
+
+                        <td>
+                            Kegiatan Pengabdian kepada Masyarakat
+                        </td>
+
+                        <td class="target">
+                            ≥ 1 kegiatan/tahun
+                        </td>
+
+                        <td class="bobot">
+                            15%
+                        </td>
+
+                        <td>
+                            <input
+                                class="capaian"
+                                type="number"
+                                min="0"
+                                max="100"
+                                value="0"
+                                oninput="hitung()"
+                            >
+                        </td>
+
+                        <td class="skor">0</td>
+
+                        <td class="nilai">0.00</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>5</td>
+
+                        <td>Pengembangan Diri</td>
+
+                        <td>
+                            Seminar, pelatihan atau sertifikasi
+                        </td>
+
+                        <td class="target">
+                            ≥ 1 kegiatan/tahun
+                        </td>
+
+                        <td class="bobot">
+                            10%
+                        </td>
+
+                        <td>
+                            <input
+                                class="capaian"
+                                type="number"
+                                min="0"
+                                max="100"
+                                value="0"
+                                oninput="hitung()"
+                            >
+                        </td>
+
+                        <td class="skor">0</td>
+
+                        <td class="nilai">0.00</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>6</td>
+
+                        <td>Kontribusi Prodi</td>
+
+                        <td>
+                            Kegiatan akademik, kepanitiaan & tugas Prodi
+                        </td>
+
+                        <td class="target">
+                            ≥ 1 kegiatan
+                        </td>
+
+                        <td class="bobot">
+                            15%
+                        </td>
+
+                        <td>
+                            <input
+                                class="capaian"
+                                type="number"
+                                min="0"
+                                max="100"
+                                value="0"
+                                oninput="hitung()"
+                            >
+                        </td>
+
+                        <td class="skor">0</td>
+
+                        <td class="nilai">0.00</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <br>
+
+
+        <!-- HASIL -->
+        <div class="result-grid">
+
+            <div class="result-box">
+
+                <div class="result-title">
+                    💕 NILAI AKHIR
+                </div>
+
+                <div
+                    class="result-value"
+                    id="nilaiAkhir"
+                >
+                    0.00
+                </div>
+
+                <div class="result-small">
+                    dari 100
+                </div>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <div class="result-title">
+                    🌸 KATEGORI
+                </div>
+
+                <div
+                    class="result-value"
+                    id="kategori"
+                >
+                    Belum Dinilai
+                </div>
+
+                <div class="result-small">
+                    hasil penilaian
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- BUKTI PENDUKUNG -->
+    <div class="card">
+
+        <div class="section-title">
+
+            <div class="number">03</div>
+
+            <div>
+
+                <h2>Bukti Pendukung</h2>
+
+                <p>
+                    Centang dokumen yang tersedia.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="evidence-grid">
+
+
+            <div class="evidence">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        class="bukti"
+                        value="RPS / Bahan Ajar"
+                    >
+
+                    📚 RPS / Bahan Ajar
+
+                </label>
+
+            </div>
+
+
+            <div class="evidence">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        class="bukti"
+                        value="Presensi / BAP"
+                    >
+
+                    📝 Presensi / BAP
+
+                </label>
+
+            </div>
+
+
+            <div class="evidence">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        class="bukti"
+                        value="Penelitian / Publikasi"
+                    >
+
+                    📖 Penelitian / Publikasi
+
+                </label>
+
+            </div>
+
+
+            <div class="evidence">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        class="bukti"
+                        value="Bukti PKM"
+                    >
+
+                    🤝 Bukti PKM
+
+                </label>
+
+            </div>
+
+
+            <div class="evidence">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        class="bukti"
+                        value="Sertifikat Pelatihan"
+                    >
+
+                    🎓 Sertifikat Pelatihan
+
+                </label>
+
+            </div>
+
+
+            <div class="evidence">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        class="bukti"
+                        value="Surat Tugas / Dokumentasi"
+                    >
+
+                    📋 Surat Tugas / Dokumentasi
+
+                </label>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- CATATAN DOSEN -->
+        <div class="note-box">
+
+            <label>
+                📝 Catatan Dosen
+            </label>
+
+            <textarea
+                id="catatan"
+                placeholder="Tuliskan catatan, keterangan, prestasi, kendala, atau rekomendasi untuk dosen..."
+            ></textarea>
+
+            <div class="note-help">
+                Catatan ini akan otomatis dicantumkan pada dokumen Word hasil download.
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PENGESAHAN -->
+    <div class="card">
+
+        <div class="section-title">
+
+            <div class="number">04</div>
+
+            <div>
+
+                <h2>Pengesahan</h2>
+
+                <p>
+                    Data Ketua Program Studi dan penandatangan.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Ketua Program Studi
+                </label>
+
+                <input
+                    id="kaprodi"
+                    value="Iroh Rahmawati"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Gelar Ketua Program Studi
+                </label>
+
+                <input
+                    id="gelarKaprodi"
+                    value="S.E., M.Ak."
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    NIDN / NUPTK Ketua Program Studi
+                </label>
+
+                <input
+                    id="nidnKaprodi"
+                    placeholder="Masukkan NIDN / NUPTK Ketua Prodi"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Kota / Tempat
+                </label>
+
+                <input
+                    id="tempat"
+                    value="Serang"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- BUTTON -->
+    <div class="actions">
+
+        <button
+            class="btn-reset"
+            onclick="resetForm()"
+        >
+            ↻ Reset Form
+        </button>
+
+
+        <button
+            class="btn-download"
+            onclick="downloadWord()"
+        >
+            📄 Download Form Word
+        </button>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        <div style="font-size:25px;">
+            ♡
+        </div>
+
+        Sistem KPI Dosen · Program Studi Akuntansi
+
+        <br>
+
+        Universitas Pamulang · Kampus Serang
+
+    </div>
+
 </div>
-
-<div>
-
-<div class="small-title">
-UNIVERSITAS PAMULANG
-</div>
-
-<h1>
-KPI Dosen
-</h1>
-
-<p>
-Program Studi Akuntansi · Kampus Serang
-</p>
-
-</div>
-
-</div>
-
-<div class="header-badge">
-✦ Sistem Penilaian Dosen
-</div>
-
-</div>
-
-</header>
-
-
-
-<!-- =========================================================
-     MAIN
-========================================================= -->
-
-<main class="container">
-
-
-<!-- =========================================================
-     WELCOME
-========================================================= -->
-
-<section class="welcome">
-
-<div>
-
-<span class="welcome-label">
-✨ SELAMAT DATANG
-</span>
-
-<h2>
-Penilaian KPI Dosen
-</h2>
-
-<p>
-Isi data dosen dan capaian KPI.
-Nilai akan dihitung otomatis oleh sistem.
-</p>
-
-</div>
-
-<div class="welcome-heart">
-♡
-</div>
-
-</section>
-
-
-
-<!-- =========================================================
-     IDENTITAS DOSEN
-========================================================= -->
-
-<section class="card">
-
-<div class="section-heading">
-
-<div class="number">
-01
-</div>
-
-<div>
-
-<h3>
-Identitas Dosen
-</h3>
-
-<p>
-Pilih dosen dari daftar atau tambahkan dosen baru.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="form-grid two">
-
-
-<div class="form-group">
-
-<label>
-Nama Dosen
-</label>
-
-<select id="dosenSelect">
-
-<option value="">
-♡ Pilih nama dosen
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-NUPTK / NIDN
-</label>
-
-<input
-type="text"
-id="nidn"
-placeholder="Otomatis muncul"
-readonly
->
-
-</div>
-
-</div>
-
-
-
-<div class="form-grid three">
-
-
-<div class="form-group">
-
-<label>
-Jabatan Akademik
-</label>
-
-<input
-type="text"
-id="jabatan"
-placeholder="Contoh: Asisten Ahli"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Status Dosen
-</label>
-
-<select id="status">
-
-<option>
-Dosen Tetap
-</option>
-
-<option>
-Dosen Tidak Tetap
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Periode Penilaian
-</label>
-
-<input
-type="text"
-id="periode"
-placeholder="Contoh: 2026/2027 Ganjil"
->
-
-</div>
-
-</div>
-
-
-
-<!-- =========================================================
-     DOSEN BARU
-========================================================= -->
-
-<div
-id="newDosenBox"
-class="new-dosen hidden"
->
-
-<div class="new-title">
-
-<span>
-🌷
-</span>
-
-<div>
-
-<h4>
-Tambah Dosen Baru
-</h4>
-
-<p>
-Masukkan nama dan NUPTK/NIDN dosen baru.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="form-grid two">
-
-<div class="form-group">
-
-<label>
-Nama Dosen
-</label>
-
-<input
-type="text"
-id="newNama"
-placeholder="Ketik nama lengkap"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-NUPTK / NIDN
-</label>
-
-<input
-type="text"
-id="newNidn"
-placeholder="Ketik NUPTK/NIDN"
->
-
-</div>
-
-</div>
-
-
-<button
-class="btn btn-pink"
-id="saveDosen"
-type="button"
->
-♡ Tambahkan ke Daftar
-</button>
-
-
-<button
-class="btn btn-white"
-id="cancelDosen"
-type="button"
->
-Batal
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================================================
-     PENILAIAN KPI
-========================================================= -->
-
-<section class="card">
-
-<div class="section-heading">
-
-<div class="number">
-02
-</div>
-
-<div>
-
-<h3>
-Penilaian KPI
-</h3>
-
-<p>
-Masukkan capaian. Skor dan nilai dihitung otomatis.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="info-note">
-
-<span>
-💗
-</span>
-
-<span>
-
-<strong>Skala Skor:</strong>
-
-4 = sangat baik ·
-3 = baik ·
-2 = cukup ·
-1 = perlu pembinaan.
-
-</span>
-
-</div>
-
-
-<div class="table-container">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>No</th>
-
-<th>Komponen KPI</th>
-
-<th>Indikator</th>
-
-<th>Target</th>
-
-<th>Bobot</th>
-
-<th>Capaian</th>
-
-<th>Skor</th>
-
-<th>Nilai</th>
-
-</tr>
-
-</thead>
-
-<tbody id="kpiBody">
-</tbody>
-
-</table>
-
-</div>
-
-
-
-<div class="result-grid">
-
-<div class="result-card">
-
-<span>
-💕 NILAI AKHIR
-</span>
-
-<strong id="finalScore">
-0.00
-</strong>
-
-<small>
-dari 100
-</small>
-
-</div>
-
-
-<div class="result-card">
-
-<span>
-🌸 KATEGORI
-</span>
-
-<strong id="category">
-Belum Dinilai
-</strong>
-
-<small>
-hasil penilaian
-</small>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================================================
-     BUKTI PENDUKUNG
-========================================================= -->
-
-<section class="card">
-
-<div class="section-heading">
-
-<div class="number">
-03
-</div>
-
-<div>
-
-<h3>
-Bukti Pendukung
-</h3>
-
-<p>
-Centang dokumen yang tersedia.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="check-grid">
-
-
-<label class="check-item">
-
-<input type="checkbox">
-
-<span>
-📚 RPS / Bahan Ajar
-</span>
-
-</label>
-
-
-<label class="check-item">
-
-<input type="checkbox">
-
-<span>
-📝 Presensi / BAP
-</span>
-
-</label>
-
-
-<label class="check-item">
-
-<input type="checkbox">
-
-<span>
-📖 Penelitian / Publikasi
-</span>
-
-</label>
-
-
-<label class="check-item">
-
-<input type="checkbox">
-
-<span>
-🤝 Bukti PKM
-</span>
-
-</label>
-
-
-<label class="check-item">
-
-<input type="checkbox">
-
-<span>
-🎓 Sertifikat Pelatihan
-</span>
-
-</label>
-
-
-<label class="check-item">
-
-<input type="checkbox">
-
-<span>
-📋 Surat Tugas / Dokumentasi
-</span>
-
-</label>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =========================================================
-     ACTION
-========================================================= -->
-
-<section class="action-area">
-
-<button
-id="downloadWord"
-class="download-btn"
-type="button"
->
-
-📄 Download Form Word
-
-</button>
-
-
-<button
-id="resetBtn"
-class="reset-btn"
-type="button"
->
-
-↻ Reset Form
-
-</button>
-
-</section>
-
-
-</main>
-
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-<div class="heart">
-♡
-</div>
-
-<p>
-Sistem KPI Dosen · Program Studi Akuntansi
-</p>
-
-<small>
-Universitas Pamulang · Kampus Serang
-</small>
-
-</footer>
 
 
 
 <script>
 
-
-/* =========================================================
-   DATA DOSEN
-========================================================= */
-
-const initialDosen = [
-
-{
-nama:"Achmad Khusnul Iman, S.E., M.Ak.",
-nidn:"6534771672130223"
-},
-
-{
-nama:"Ahmad Syuheri, S.Ak., M.Ak.",
-nidn:"7733775676130242"
-},
-
-{
-nama:"Akhmad Nofiata, S.E., M.Ak.",
-nidn:"9435767668130333"
-},
-
-{
-nama:"Arif Wahyu Nur Kholid, S.Ak., M.Ak.",
-nidn:"7155777678130133"
-},
-
-{
-nama:"Arifatun Nasihah, S.Ak., M.Ak.",
-nidn:"9041774675230273"
-},
-
-{
-nama:"Ayu Septiana Putri, S.Ak., M.Ak.",
-nidn:"0246778679230083"
-},
-
-{
-nama:"Didik Setiawan, S.Ak., M.Ak.",
-nidn:"0341773674130303"
-},
-
-{
-nama:"Dwi Fitrianingsih, S.E., M.Ak.",
-nidn:"0401108604 / 0333764665230293"
-},
-
-{
-nama:"Eko Pujiyono, S.E., M.Ak.",
-nidn:"8033768669130423"
-},
-
-{
-nama:"Erimina Halawa, S.Ak., M.Ak.",
-nidn:"8447774675230262"
-},
-
-{
-nama:"Fadli Nuryasin, S.E., M.Ak.",
-nidn:"6843772673130252"
-},
-
-{
-nama:"Indah Kristianti, S.Ak., M.Ak.",
-nidn:"9661776677230162"
-},
-
-{
-nama:"Ingga Maulana, S.Ak., M.Ak.",
-nidn:"1553775676130143"
-},
-
-{
-nama:"Irna Maya Sari, S.E., M.Ak.",
-nidn:"0401028902 / 1533767668230312"
-},
-
-{
-nama:"Iroh Rahmawati, S.E., M.Ak.",
-nidn:"0417108506 / 0349763665220013"
-},
-
-{
-nama:"Kahfi Fikrianoor, S.E., M.Sc.",
-nidn:"1547778679130112"
-},
-
-{
-nama:"Lamsah, S.E., M.M., M.Ak.",
-nidn:"0403078803 / 7035766667230313"
-},
-
-{
-nama:"Listia Aulia Indy, S.Ak., M.Ak.",
-nidn:"4939776677230162"
-},
-
-{
-nama:"Muchamad Rizky Fauzy, S.E., M.Tre.",
-nidn:"7858775676130142"
-},
-
-{
-nama:"Nistri Kusumawardani, S.E., M.Ak.",
-nidn:"3438770671230333"
-},
-
-{
-nama:"Rahadian Amrullah, S.Pd., M.Ak.",
-nidn:"0403119105 / 0435769670310293"
-},
-
-{
-nama:"Ricka Hidayati Chaniago, S.Ak., M.Ak.",
-nidn:"2363778679230053"
-},
-
-{
-nama:"Ririn Sari Dewi, S.E., M.Ak.",
-nidn:"0405079102 / 9037769670231053"
-},
-
-{
-nama:"Rismawati, S.E., M.Ak.",
-nidn:"5340776677230133"
-},
-
-{
-nama:"Rupianna Tambunan, S.E., M.Ak.",
-nidn:"1854768669230312"
-},
-
-{
-nama:"Shally Khomilah, S.E., M.Ak.",
-nidn:"2257774675230203"
-},
-
-{
-nama:"Vani Vauliyanti, S.E., M.Ak.",
-nidn:"7351775676230183"
-},
-
-{
-nama:"Yayah Syahriyah, S.Ak., M.Ak.",
-nidn:"7645773674230322"
-},
-
-{
-nama:"Yudha Eka Febrian, S.E., M.Ak.",
-nidn:"3541771672130302"
-},
-
-{
-nama:"Yuliyanti, S.Pd., M.Pd.",
-nidn:"5834774675230262"
-}
-
-];
-
-
-/* =========================================================
-   STORAGE
-========================================================= */
-
-const STORAGE_KEY =
-"KPI_DOSEN_AKUNTANSI_SERANG";
-
-
-function getDosen(){
-
-    try{
-
-        const saved =
-            localStorage.getItem(STORAGE_KEY);
-
-        if(saved){
-
-            return JSON.parse(saved);
-
-        }
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-    }
-
-    return initialDosen;
-
-}
-
-
-function saveDosenList(list){
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(list)
-    );
-
-}
-
-
-/* =========================================================
-   DATA KPI
-========================================================= */
-
-const kpis = [
-
-{
-    komponen:"Pendidikan & Pengajaran",
-    indikator:"Kehadiran dan pelaksanaan perkuliahan",
-    target:"≥ 90%",
-    bobot:30,
-    tipe:"percent"
-},
-
-{
-    komponen:"Pendidikan & Pengajaran",
-    indikator:"Kelengkapan RPS, bahan ajar & nilai",
-    target:"100%",
-    bobot:10,
-    tipe:"percent"
-},
-
-{
-    komponen:"Penelitian",
-    indikator:"Penelitian & publikasi ilmiah",
-    target:"≥ 1 kegiatan/tahun",
-    bobot:20,
-    tipe:"count"
-},
-
-{
-    komponen:"Pengabdian",
-    indikator:"Kegiatan Pengabdian kepada Masyarakat",
-    target:"≥ 1 kegiatan/tahun",
-    bobot:15,
-    tipe:"count"
-},
-
-{
-    komponen:"Pengembangan Diri",
-    indikator:"Seminar, pelatihan atau sertifikasi",
-    target:"≥ 1 kegiatan/tahun",
-    bobot:10,
-    tipe:"count"
-},
-
-{
-    komponen:"Kontribusi Prodi",
-    indikator:"Kegiatan akademik, kepanitiaan & tugas Prodi",
-    target:"≥ 1 kegiatan",
-    bobot:15,
-    tipe:"count"
-}
-
-];
-
-
-/* =========================================================
-   POPULATE DOSEN
-========================================================= */
-
-function populateDosen(){
+/* =========================
+   DOSEN
+========================= */
+
+function cekDosen(){
 
     const select =
-        document.getElementById("dosenSelect");
+        document.getElementById("namaDosen");
 
-    select.innerHTML = "";
+    const manual =
+        document.getElementById("namaManual");
 
-    const defaultOption =
-        document.createElement("option");
+    if(select.value === "lainnya"){
 
-    defaultOption.value = "";
+        manual.style.display = "block";
+        manual.focus();
 
-    defaultOption.textContent =
-        "♡ Pilih nama dosen";
+    }else{
 
-    select.appendChild(defaultOption);
+        manual.style.display = "none";
 
-
-    const list =
-        getDosen();
-
-
-    list.forEach((dosen,index)=>{
-
-        const option =
-            document.createElement("option");
-
-        option.value = index;
-
-        option.textContent =
-            dosen.nama;
-
-        select.appendChild(option);
-
-    });
-
-
-    const other =
-        document.createElement("option");
-
-    other.value = "__new__";
-
-    other.textContent =
-        "+ DOSEN LAINNYA";
-
-    select.appendChild(other);
+    }
 
 }
 
 
-/* =========================================================
-   SELECT DOSEN
-========================================================= */
+/* =========================
+   NAMA DOSEN
+========================= */
 
-document
-.getElementById("dosenSelect")
-.addEventListener("change",function(){
+function getNamaDosen(){
 
-    const value = this.value;
+    const select =
+        document.getElementById("namaDosen");
 
+    const manual =
+        document.getElementById("namaManual");
 
-    if(value === "__new__"){
+    if(select.value === "lainnya"){
 
-        document
-        .getElementById("newDosenBox")
-        .classList
-        .remove("hidden");
-
-        document
-        .getElementById("nidn")
-        .value = "";
-
-        return;
-    }
-
-
-    document
-    .getElementById("newDosenBox")
-    .classList
-    .add("hidden");
-
-
-    if(value === ""){
-
-        document
-        .getElementById("nidn")
-        .value = "";
-
-        return;
-    }
-
-
-    const list =
-        getDosen();
-
-    const dosen =
-        list[Number(value)];
-
-
-    if(dosen){
-
-        document
-        .getElementById("nidn")
-        .value =
-            dosen.nidn;
+        return manual.value.trim() || "Dosen Baru";
 
     }
 
-});
-
-
-/* =========================================================
-   TAMBAH DOSEN BARU
-========================================================= */
-
-document
-.getElementById("saveDosen")
-.addEventListener("click",function(){
-
-    const nama =
-        document
-        .getElementById("newNama")
-        .value
-        .trim();
-
-
-    const nidn =
-        document
-        .getElementById("newNidn")
-        .value
-        .trim();
-
-
-    if(!nama){
-
-        alert(
-            "Nama dosen wajib diisi."
-        );
-
-        return;
-    }
-
-
-    if(!nidn){
-
-        alert(
-            "NUPTK/NIDN wajib diisi."
-        );
-
-        return;
-    }
-
-
-    const list =
-        getDosen();
-
-
-    const duplicate =
-        list.some(dosen =>
-            dosen.nama.toLowerCase() ===
-            nama.toLowerCase()
-        );
-
-
-    if(duplicate){
-
-        alert(
-            "Nama dosen tersebut sudah ada di daftar."
-        );
-
-        return;
-    }
-
-
-    list.push({
-
-        nama:nama,
-
-        nidn:nidn
-
-    });
-
-
-    saveDosenList(list);
-
-
-    populateDosen();
-
-
-    document
-    .getElementById("dosenSelect")
-    .value =
-        String(list.length - 1);
-
-
-    document
-    .getElementById("nidn")
-    .value =
-        nidn;
-
-
-    document
-    .getElementById("newNama")
-    .value = "";
-
-    document
-    .getElementById("newNidn")
-    .value = "";
-
-
-    document
-    .getElementById("newDosenBox")
-    .classList
-    .add("hidden");
-
-
-    alert(
-        "♡ Dosen berhasil ditambahkan ke daftar!"
-    );
-
-});
-
-
-/* =========================================================
-   BATAL TAMBAH DOSEN
-========================================================= */
-
-document
-.getElementById("cancelDosen")
-.addEventListener("click",function(){
-
-    document
-    .getElementById("newDosenBox")
-    .classList
-    .add("hidden");
-
-
-    document
-    .getElementById("dosenSelect")
-    .value = "";
-
-});
-
-
-/* =========================================================
-   RENDER KPI
-========================================================= */
-
-function renderKpi(){
-
-    const body =
-        document.getElementById("kpiBody");
-
-
-    body.innerHTML = "";
-
-
-    kpis.forEach((kpi,index)=>{
-
-        const row =
-            document.createElement("tr");
-
-
-        row.innerHTML = `
-
-            <td>
-                ${index + 1}
-            </td>
-
-            <td>
-                ${kpi.komponen}
-            </td>
-
-            <td>
-                ${kpi.indikator}
-            </td>
-
-            <td>
-                ${kpi.target}
-            </td>
-
-            <td>
-                ${kpi.bobot}%
-            </td>
-
-            <td>
-
-                <input
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    class="capaian"
-                    data-index="${index}"
-                    placeholder="${
-                        kpi.tipe === "percent"
-                        ? "0-100"
-                        : "0"
-                    }"
-                >
-
-            </td>
-
-            <td
-                class="score"
-                id="score-${index}"
-            >
-                0
-            </td>
-
-            <td
-                class="nilai"
-                id="nilai-${index}"
-            >
-                0.00
-            </td>
-
-        `;
-
-
-        body.appendChild(row);
-
-    });
-
-
-    document
-    .querySelectorAll(".capaian")
-    .forEach(input=>{
-
-        input.addEventListener(
-            "input",
-            calculate
-        );
-
-    });
+    return select.value || "Belum diisi";
 
 }
 
 
-/* =========================================================
-   HITUNG SKOR
-========================================================= */
+/* =========================
+   HITUNG KPI
+========================= */
 
-function getScore(capaian,tipe){
+function hitung(){
 
-    if(!Number.isFinite(capaian)){
-        return 0;
-    }
+    const inputs =
+        document.querySelectorAll(".capaian");
 
+    const skor =
+        document.querySelectorAll(".skor");
 
-    if(tipe === "percent"){
+    const nilai =
+        document.querySelectorAll(".nilai");
 
-        if(capaian >= 100){
-            return 4;
-        }
-
-        if(capaian >= 90){
-            return 3;
-        }
-
-        if(capaian >= 75){
-            return 2;
-        }
-
-        return 1;
-
-    }
-
-
-    if(tipe === "count"){
-
-        if(capaian >= 1){
-            return 4;
-        }
-
-        return 1;
-
-    }
-
-
-    return 0;
-
-}
-
-
-/* =========================================================
-   HITUNG NILAI
-========================================================= */
-
-function calculate(){
+    const bobot = [
+        30,
+        10,
+        20,
+        15,
+        10,
+        15
+    ];
 
     let total = 0;
 
+    inputs.forEach((input,index)=>{
 
-    kpis.forEach((kpi,index)=>{
+        let capaian =
+            parseFloat(input.value) || 0;
 
-        const input =
-            document.querySelector(
-                `[data-index="${index}"]`
-            );
+        if(capaian < 0)
+            capaian = 0;
 
+        if(capaian > 100)
+            capaian = 100;
 
-        const capaian =
-            parseFloat(input.value);
+        input.value = capaian;
 
+        /*
+        SKOR menggunakan capaian langsung.
+        NILAI = capaian x bobot / 100
+        */
 
-        const score =
-            getScore(
-                capaian,
-                kpi.tipe
-            );
+        skor[index].textContent =
+            capaian.toFixed(0);
 
+        const nilaiItem =
+            capaian * bobot[index] / 100;
 
-        const nilai =
-            (score / 4) *
-            kpi.bobot;
+        nilai[index].textContent =
+            nilaiItem.toFixed(2);
 
-
-        total += nilai;
-
-
-        document
-        .getElementById(
-            `score-${index}`
-        )
-        .textContent =
-            score;
-
-
-        document
-        .getElementById(
-            `nilai-${index}`
-        )
-        .textContent =
-            nilai.toFixed(2);
+        total += nilaiItem;
 
     });
 
 
-    document
-    .getElementById("finalScore")
-    .textContent =
-        total.toFixed(2);
+    document.getElementById("nilaiAkhir")
+        .textContent = total.toFixed(2);
 
 
-    let category =
-        "Belum Dinilai";
+    let kategori = "Belum Dinilai";
 
+    if(total >= 85){
 
-    const anyFilled =
-        Array.from(
-            document.querySelectorAll(".capaian")
-        )
-        .some(input => input.value !== "");
+        kategori = "Sangat Baik";
 
+    }else if(total >= 75){
 
-    if(anyFilled){
+        kategori = "Baik";
 
-        if(total >= 90){
+    }else if(total >= 65){
 
-            category =
-                "Sangat Baik";
+        kategori = "Cukup";
 
-        }
+    }else if(total > 0){
 
-        else if(total >= 80){
-
-            category =
-                "Baik";
-
-        }
-
-        else if(total >= 70){
-
-            category =
-                "Cukup";
-
-        }
-
-        else{
-
-            category =
-                "Perlu Pembinaan";
-
-        }
+        kategori = "Perlu Peningkatan";
 
     }
 
 
-    document
-    .getElementById("category")
-    .textContent =
-        category;
-
-
-    return total;
+    document.getElementById("kategori")
+        .textContent = kategori;
 
 }
 
 
-/* =========================================================
+/* =========================
+   BUKTI
+========================= */
+
+function getBukti(){
+
+    const checked =
+        document.querySelectorAll(".bukti:checked");
+
+    const data = [];
+
+    checked.forEach(item=>{
+        data.push(item.value);
+    });
+
+    return data;
+
+}
+
+
+/* =========================
    RESET
-========================================================= */
+========================= */
 
-document
-.getElementById("resetBtn")
-.addEventListener("click",function(){
+function resetForm(){
 
-    const yakin =
-        confirm(
-            "Yakin ingin mengosongkan semua isian?"
-        );
-
-
-    if(!yakin){
+    if(!confirm("Reset seluruh data KPI?"))
         return;
-    }
 
+    document.querySelectorAll("input").forEach(input=>{
 
-    document
-    .getElementById("dosenSelect")
-    .value = "";
+        if(input.type === "checkbox"){
 
+            input.checked = false;
 
-    document
-    .getElementById("nidn")
-    .value = "";
-
-
-    document
-    .getElementById("jabatan")
-    .value = "";
-
-
-    document
-    .getElementById("periode")
-    .value = "";
-
-
-    document
-    .getElementById("newNama")
-    .value = "";
-
-
-    document
-    .getElementById("newNidn")
-    .value = "";
-
-
-    document
-    .getElementById("newDosenBox")
-    .classList
-    .add("hidden");
-
-
-    document
-    .querySelectorAll(".capaian")
-    .forEach(input=>{
-
-        input.value = "";
+        }
 
     });
 
 
-    document
-    .querySelectorAll(
-        ".check-item input"
-    )
-    .forEach(input=>{
-
-        input.checked = false;
-
-    });
+    document.querySelectorAll(".capaian")
+        .forEach(input=>{
+            input.value = 0;
+        });
 
 
-    calculate();
+    document.getElementById("catatan")
+        .value = "";
 
-});
+
+    document.getElementById("nidn")
+        .value = "";
 
 
-/* =========================================================
+    document.getElementById("nidnKaprodi")
+        .value = "";
+
+
+    document.getElementById("namaDosen")
+        .selectedIndex = 0;
+
+
+    document.getElementById("namaManual")
+        .value = "";
+
+
+    document.getElementById("namaManual")
+        .style.display = "none";
+
+
+    hitung();
+
+}
+
+
+/* =========================
    DOWNLOAD WORD
-   TANPA LIBRARY EKSTERNAL
-========================================================= */
+========================= */
 
-function downloadWord(){
+async function downloadWord(){
 
-    const select =
-        document.getElementById("dosenSelect");
+    try{
 
+        if(typeof docx === "undefined"){
 
-    const selected =
-        select.value;
+            alert(
+                "Library Word belum siap. Pastikan internet aktif lalu refresh halaman."
+            );
 
-
-    const list =
-        getDosen();
-
-
-    let namaDosen = "";
-
-    let nidn =
-        document.getElementById("nidn").value;
-
-
-    if(
-        selected !== "" &&
-        selected !== "__new__"
-    ){
-
-        const dosen =
-            list[Number(selected)];
-
-
-        if(dosen){
-
-            namaDosen =
-                dosen.nama;
-
-            nidn =
-                dosen.nidn;
+            return;
 
         }
 
-    }
+
+        const {
+            Document,
+            Packer,
+            Paragraph,
+            TextRun,
+            Table,
+            TableRow,
+            TableCell,
+            WidthType,
+            AlignmentType,
+            HeadingLevel,
+            BorderStyle
+        } = docx;
 
 
-    if(!namaDosen){
+        const namaDosen =
+            getNamaDosen();
 
-        namaDosen =
-            document
-            .getElementById("newNama")
-            .value
-            .trim();
+        const nidn =
+            document.getElementById("nidn")
+            .value.trim() || "-";
 
-    }
+        const jabatan =
+            document.getElementById("jabatan")
+            .value.trim() || "-";
 
+        const periode =
+            document.getElementById("periode")
+            .value.trim() || "-";
 
-    if(!namaDosen){
+        const catatan =
+            document.getElementById("catatan")
+            .value.trim() || "Tidak ada catatan.";
 
-        alert(
-            "Silakan pilih atau masukkan nama dosen terlebih dahulu."
-        );
+        const kaprodi =
+            document.getElementById("kaprodi")
+            .value.trim() || "Iroh Rahmawati";
 
-        return;
+        const gelarKaprodi =
+            document.getElementById("gelarKaprodi")
+            .value.trim();
 
-    }
+        const nidnKaprodi =
+            document.getElementById("nidnKaprodi")
+            .value.trim() || "-";
 
-
-    if(!nidn){
-
-        nidn =
-            "____________________________";
-
-    }
-
-
-    const jabatan =
-        document
-        .getElementById("jabatan")
-        .value
-        .trim() ||
-        "____________________________";
+        const tempat =
+            document.getElementById("tempat")
+            .value.trim() || "Serang";
 
 
-    const status =
-        document
-        .getElementById("status")
-        .value;
+        const nilaiAkhir =
+            document.getElementById("nilaiAkhir")
+            .textContent;
 
-
-    const periode =
-        document
-        .getElementById("periode")
-        .value
-        .trim() ||
-        "____________________________";
-
-
-    /* =====================================================
-       HITUNG
-    ===================================================== */
-
-    const total =
-        calculate();
-
-
-    const category =
-        document
-        .getElementById("category")
-        .textContent;
-
-
-    /* =====================================================
-       KPI TABLE
-    ===================================================== */
-
-    let kpiRows = "";
-
-
-    kpis.forEach((kpi,index)=>{
-
-        const input =
-            document.querySelector(
-                `[data-index="${index}"]`
-            );
-
-
-        const capaian =
-            input.value || "0";
-
-
-        const score =
-            document
-            .getElementById(
-                `score-${index}`
-            )
+        const kategori =
+            document.getElementById("kategori")
             .textContent;
 
 
-        const nilai =
-            document
-            .getElementById(
-                `nilai-${index}`
-            )
-            .textContent;
+        /* =========================
+           KOP SURAT
+        ========================= */
+
+        const kop = [
+
+            new Paragraph({
+
+                alignment:AlignmentType.CENTER,
+
+                children:[
+
+                    new TextRun({
+                        text:"UNIVERSITAS PAMULANG",
+                        bold:true,
+                        size:28
+                    })
+
+                ]
+
+            }),
 
 
-        kpiRows += `
+            new Paragraph({
 
-        <tr>
+                alignment:AlignmentType.CENTER,
 
-            <td class="center">
-                ${index + 1}
-            </td>
+                children:[
 
-            <td>
-                ${kpi.komponen}
-            </td>
+                    new TextRun({
+                        text:"PROGRAM STUDI AKUNTANSI",
+                        bold:true,
+                        size:26
+                    })
 
-            <td>
-                ${kpi.indikator}
-            </td>
+                ]
 
-            <td class="center">
-                ${kpi.target}
-            </td>
-
-            <td class="center">
-                ${kpi.bobot}%
-            </td>
-
-            <td class="center">
-                ${capaian}
-            </td>
-
-            <td class="center">
-                ${score}
-            </td>
-
-            <td class="center">
-                ${nilai}
-            </td>
-
-        </tr>
-
-        `;
-
-    });
+            }),
 
 
-    /* =====================================================
-       BUKTI
-    ===================================================== */
+            new Paragraph({
 
-    let evidence = [];
+                alignment:AlignmentType.CENTER,
 
+                children:[
 
-    document
-    .querySelectorAll(".check-item")
-    .forEach(item=>{
+                    new TextRun({
+                        text:"KAMPUS SERANG",
+                        bold:true,
+                        size:24
+                    })
 
-        const checkbox =
-            item.querySelector("input");
+                ]
 
-
-        if(checkbox.checked){
-
-            evidence.push(
-                item
-                .querySelector("span")
-                .innerText
-                .trim()
-            );
-
-        }
-
-    });
+            }),
 
 
-    let evidenceHTML = "";
+            new Paragraph({
+
+                alignment:AlignmentType.CENTER,
+
+                children:[
+
+                    new TextRun({
+                        text:"Sistem Penilaian Kinerja Dosen (KPI)",
+                        size:20
+                    })
+
+                ]
+
+            }),
 
 
-    if(evidence.length > 0){
+            new Paragraph({
 
-        evidenceHTML =
-            evidence
-            .map(item=>{
+                alignment:AlignmentType.CENTER,
 
-                return `
-                <li>
-                    ${item}
-                </li>
-                `;
+                children:[
+
+                    new TextRun({
+                        text:"____________________________________________________________",
+                        bold:true
+                    })
+
+                ]
 
             })
-            .join("");
 
-    }
+        ];
+
+
+        /* =========================
+           IDENTITAS
+        ========================= */
 
-    else{
+        const identitas = new Table({
 
-        evidenceHTML = `
-            <li>
-                Belum ada bukti pendukung yang dipilih.
-            </li>
-        `;
+            width:{
+                size:100,
+                type:WidthType.PERCENTAGE
+            },
 
-    }
+            rows:[
 
+                new TableRow({
 
-    /* =====================================================
-       WORD HTML
-    ===================================================== */
+                    children:[
 
-    const wordHTML = `
+                        new TableCell({
+                            children:[
+                                new Paragraph({
+                                    children:[
+                                        new TextRun({
+                                            text:"Nama Dosen",
+                                            bold:true
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
+
+                        new TableCell({
+                            children:[
+                                new Paragraph(
+                                    `: ${namaDosen}`
+                                )
+                            ]
+                        })
 
-<!DOCTYPE html>
+                    ]
 
-<html>
+                }),
 
-<head>
 
-<meta charset="UTF-8">
+                new TableRow({
 
+                    children:[
 
-<style>
+                        new TableCell({
+                            children:[
+                                new Paragraph({
+                                    children:[
+                                        new TextRun({
+                                            text:"NIDN / NUPTK",
+                                            bold:true
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
 
-@page{
+                        new TableCell({
+                            children:[
+                                new Paragraph(
+                                    `: ${nidn}`
+                                )
+                            ]
+                        })
 
-    size:A4;
+                    ]
 
-    margin:
-        1.5cm
-        1.5cm
-        1.5cm
-        1.5cm;
+                }),
 
-}
 
+                new TableRow({
 
-body{
+                    children:[
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+                        new TableCell({
+                            children:[
+                                new Paragraph({
+                                    children:[
+                                        new TextRun({
+                                            text:"Jabatan / Status",
+                                            bold:true
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
 
-    font-size:
-        10pt;
+                        new TableCell({
+                            children:[
+                                new Paragraph(
+                                    `: ${jabatan}`
+                                )
+                            ]
+                        })
 
-    color:#222;
+                    ]
 
-    margin:0;
+                }),
 
-}
 
+                new TableRow({
 
-.header{
+                    children:[
 
-    text-align:center;
+                        new TableCell({
+                            children:[
+                                new Paragraph({
+                                    children:[
+                                        new TextRun({
+                                            text:"Periode",
+                                            bold:true
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
 
-    margin-bottom:15px;
+                        new TableCell({
+                            children:[
+                                new Paragraph(
+                                    `: ${periode}`
+                                )
+                            ]
+                        })
 
-}
+                    ]
 
+                })
 
-.header h1{
+            ]
 
-    margin:0 0 5px 0;
+        });
 
-    font-size:16pt;
 
-    font-weight:bold;
+        /* =========================
+           TABEL KPI
+        ========================= */
 
-}
+        const rows = [];
 
 
-.header h2{
+        rows.push(
 
-    margin:0 0 5px 0;
+            new TableRow({
 
-    font-size:13pt;
+                children:[
 
-}
+                    "No",
+                    "Komponen KPI",
+                    "Indikator",
+                    "Target",
+                    "Bobot",
+                    "Capaian",
+                    "Skor",
+                    "Nilai"
 
+                ].map(text=>
 
-.header p{
+                    new TableCell({
 
-    margin:0;
+                        children:[
 
-    font-size:10pt;
+                            new Paragraph({
 
-}
+                                alignment:
+                                    AlignmentType.CENTER,
 
+                                children:[
 
-.line{
+                                    new TextRun({
+                                        text:text,
+                                        bold:true
+                                    })
 
-    border-top:
-        2px solid #333;
+                                ]
 
-    margin-top:12px;
+                            })
 
-}
+                        ]
 
+                    })
 
-.section-title{
+                )
 
-    margin-top:18px;
+            })
 
-    margin-bottom:8px;
+        );
 
-    font-size:11pt;
 
-    font-weight:bold;
+        const komponen = [
 
-}
-
-
-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-}
-
-
-.identity{
-
-    margin-bottom:10px;
-
-}
-
-
-.identity td{
-
-    border:
-        1px solid #555;
-
-    padding:7px;
-
-}
-
-
-.identity td:first-child{
-
-    width:30%;
-
-    font-weight:bold;
-
-    background:#fcecf3;
-
-}
-
-
-.kpi{
-
-    table-layout:fixed;
-
-}
-
-
-.kpi th,
-.kpi td{
-
-    border:
-        1px solid #555;
-
-    padding:6px;
-
-    font-size:8.5pt;
-
-    word-wrap:break-word;
-
-}
-
-
-.kpi th{
-
-    background:#f2cfdd;
-
-    text-align:center;
-
-    font-weight:bold;
-
-}
-
-
-.center{
-
-    text-align:center;
-
-}
-
-
-.total{
-
-    font-weight:bold;
-
-    background:#fcecf3;
-
-}
-
-
-.result{
-
-    margin-top:15px;
-
-    border:
-        1px solid #555;
-
-    padding:12px;
-
-    text-align:center;
-
-}
-
-
-.result-title{
-
-    font-size:10pt;
-
-    font-weight:bold;
-
-}
-
-
-.result-score{
-
-    font-size:22pt;
-
-    font-weight:bold;
-
-    margin:5px 0;
-
-}
-
-
-.category{
-
-    font-size:12pt;
-
-    font-weight:bold;
-
-}
-
-
-.evidence{
-
-    margin-top:10px;
-
-}
-
-
-.signature{
-
-    margin-top:65px;
-
-}
-
-
-.signature td{
-
-    border:none;
-
-    width:50%;
-
-    text-align:center;
-
-    vertical-align:top;
-
-}
-
-
-.signature-space{
-
-    height:75px;
-
-}
-
-
-.footer{
-
-    text-align:center;
-
-    margin-top:25px;
-
-    font-size:8pt;
-
-    color:#777;
-
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- HEADER -->
-
-<div class="header">
-
-<h1>
-FORM PENILAIAN KEY PERFORMANCE INDICATOR (KPI) DOSEN
-</h1>
-
-<h2>
-PROGRAM STUDI AKUNTANSI
-</h2>
-
-<p>
-UNIVERSITAS PAMULANG – KAMPUS SERANG
-</p>
-
-<div class="line"></div>
-
-</div>
-
-
-
-<!-- IDENTITAS -->
-
-<div class="section-title">
-
-A. IDENTITAS DOSEN
-
-</div>
-
-
-<table class="identity">
-
-<tr>
-
-<td>
-Nama Dosen
-</td>
-
-<td>
-${namaDosen}
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-NUPTK / NIDN
-</td>
-
-<td>
-${nidn}
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Jabatan Akademik
-</td>
-
-<td>
-${jabatan}
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Status Dosen
-</td>
-
-<td>
-${status}
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Periode Penilaian
-</td>
-
-<td>
-${periode}
-</td>
-
-</tr>
-
-</table>
-
-
-
-<!-- KPI -->
-
-<div class="section-title">
-
-B. PENILAIAN KPI DOSEN
-
-</div>
-
-
-<table class="kpi">
-
-<thead>
-
-<tr>
-
-<th style="width:4%;">
-No
-</th>
-
-<th style="width:16%;">
-Komponen KPI
-</th>
-
-<th style="width:28%;">
-Indikator
-</th>
-
-<th style="width:13%;">
-Target
-</th>
-
-<th style="width:7%;">
-Bobot
-</th>
-
-<th style="width:10%;">
-Capaian
-</th>
-
-<th style="width:8%;">
-Skor
-</th>
-
-<th style="width:10%;">
-Nilai
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody>
-
-${kpiRows}
-
-
-<tr class="total">
-
-<td colspan="7" class="center">
-
-NILAI AKHIR
-
-</td>
-
-<td class="center">
-
-${total.toFixed(2)}
-
-</td>
-
-</tr>
-
-
-</tbody>
-
-</table>
-
-
-
-<!-- HASIL -->
-
-<div class="result">
-
-<div class="result-title">
-HASIL PENILAIAN
-</div>
-
-<div class="result-score">
-${total.toFixed(2)}
-</div>
-
-<div>
-dari 100
-</div>
-
-<div class="category">
-${category}
-</div>
-
-</div>
-
-
-
-<!-- BUKTI -->
-
-<div class="section-title">
-
-C. BUKTI PENDUKUNG
-
-</div>
-
-
-<div class="evidence">
-
-<ul>
-
-${evidenceHTML}
-
-</ul>
-
-</div>
-
-
-
-<!-- TANDA TANGAN -->
-
-<table class="signature">
-
-<tr>
-
-<td>
-
-Dosen yang Dinilai
-
-<div class="signature-space">
-</div>
-
-<strong>
-${namaDosen}
-</strong>
-
-</td>
-
-
-<td>
-
-Ketua Program Studi
-
-<div class="signature-space">
-</div>
-
-<strong>
-____________________________
-</strong>
-
-</td>
-
-</tr>
-
-</table>
-
-
-
-<div class="footer">
-
-Sistem KPI Dosen · Program Studi Akuntansi · Universitas Pamulang Kampus Serang
-
-</div>
-
-
-</body>
-
-</html>
-
-`;
-
-
-    /* =====================================================
-       DOWNLOAD
-    ===================================================== */
-
-    const blob =
-        new Blob(
             [
-                "\ufeff",
-                wordHTML
+                "1",
+                "Pendidikan & Pengajaran",
+                "Kehadiran dan pelaksanaan perkuliahan",
+                "≥ 90%",
+                "30%"
             ],
-            {
-                type:
-                    "application/msword"
-            }
+
+            [
+                "2",
+                "Pendidikan & Pengajaran",
+                "Kelengkapan RPS, bahan ajar & nilai",
+                "100%",
+                "10%"
+            ],
+
+            [
+                "3",
+                "Penelitian",
+                "Penelitian & publikasi ilmiah",
+                "≥ 1 kegiatan/tahun",
+                "20%"
+            ],
+
+            [
+                "4",
+                "Pengabdian",
+                "Kegiatan Pengabdian kepada Masyarakat",
+                "≥ 1 kegiatan/tahun",
+                "15%"
+            ],
+
+            [
+                "5",
+                "Pengembangan Diri",
+                "Seminar, pelatihan atau sertifikasi",
+                "≥ 1 kegiatan/tahun",
+                "10%"
+            ],
+
+            [
+                "6",
+                "Kontribusi Prodi",
+                "Kegiatan akademik, kepanitiaan & tugas Prodi",
+                "≥ 1 kegiatan",
+                "15%"
+            ]
+
+        ];
+
+
+        const inputValues =
+            document.querySelectorAll(".capaian");
+
+        const nilaiValues =
+            document.querySelectorAll(".nilai");
+
+
+        komponen.forEach((item,index)=>{
+
+            rows.push(
+
+                new TableRow({
+
+                    children:[
+
+                        item[0],
+                        item[1],
+                        item[2],
+                        item[3],
+                        item[4],
+                        inputValues[index].value,
+                        inputValues[index].value,
+                        nilaiValues[index].textContent
+
+                    ].map(text=>
+
+                        new TableCell({
+
+                            children:[
+
+                                new Paragraph(
+                                    String(text)
+                                )
+
+                            ]
+
+                        })
+
+                    )
+
+                })
+
+            );
+
+        });
+
+
+        const kpiTable = new Table({
+
+            width:{
+                size:100,
+                type:WidthType.PERCENTAGE
+            },
+
+            rows:rows
+
+        });
+
+
+        /* =========================
+           BUKTI
+        ========================= */
+
+        const bukti =
+            getBukti();
+
+
+        const buktiParagraphs = [];
+
+
+        if(bukti.length === 0){
+
+            buktiParagraphs.push(
+
+                new Paragraph(
+                    "Tidak ada bukti pendukung yang dicentang."
+                )
+
+            );
+
+        }else{
+
+            bukti.forEach(item=>{
+
+                buktiParagraphs.push(
+
+                    new Paragraph({
+
+                        text:`☑ ${item}`,
+
+                        bullet:{
+                            level:0
+                        }
+
+                    })
+
+                );
+
+            });
+
+        }
+
+
+        /* =========================
+           CATATAN
+        ========================= */
+
+        const catatanSection = [
+
+            new Paragraph({
+
+                children:[
+
+                    new TextRun({
+                        text:"CATATAN DOSEN",
+                        bold:true,
+                        size:24
+                    })
+
+                ]
+
+            }),
+
+
+            new Paragraph({
+
+                children:[
+
+                    new TextRun({
+                        text:catatan
+                    })
+
+                ]
+
+            })
+
+        ];
+
+
+        /* =========================
+           HASIL
+        ========================= */
+
+        const hasil = [
+
+            new Paragraph({
+
+                children:[
+
+                    new TextRun({
+                        text:`NILAI AKHIR : ${nilaiAkhir} / 100`,
+                        bold:true,
+                        size:24
+                    })
+
+                ]
+
+            }),
+
+
+            new Paragraph({
+
+                children:[
+
+                    new TextRun({
+                        text:`KATEGORI : ${kategori}`,
+                        bold:true,
+                        size:22
+                    })
+
+                ]
+
+            })
+
+        ];
+
+
+        /* =========================
+           TTD
+        ========================= */
+
+        const ttd = new Table({
+
+            width:{
+                size:100,
+                type:WidthType.PERCENTAGE
+            },
+
+            rows:[
+
+                new TableRow({
+
+                    children:[
+
+                        new TableCell({
+
+                            children:[
+
+                                new Paragraph({
+                                    alignment:AlignmentType.CENTER,
+                                    children:[
+                                        new TextRun({
+                                            text:"Dosen yang Dinilai"
+                                        })
+                                    ]
+                                }),
+
+                                new Paragraph(""),
+
+                                new Paragraph(""),
+
+                                new Paragraph(""),
+
+                                new Paragraph({
+
+                                    alignment:AlignmentType.CENTER,
+
+                                    children:[
+
+                                        new TextRun({
+                                            text:namaDosen,
+                                            bold:true
+                                        })
+
+                                    ]
+
+                                }),
+
+                                new Paragraph({
+
+                                    alignment:AlignmentType.CENTER,
+
+                                    children:[
+
+                                        new TextRun({
+                                            text:`NIDN/NUPTK: ${nidn}`
+                                        })
+
+                                    ]
+
+                                })
+
+                            ]
+
+                        }),
+
+
+                        new TableCell({
+
+                            children:[
+
+                                new Paragraph({
+
+                                    alignment:AlignmentType.CENTER,
+
+                                    children:[
+
+                                        new TextRun({
+                                            text:"Ketua Program Studi"
+                                        })
+
+                                    ]
+
+                                }),
+
+                                new Paragraph({
+
+                                    alignment:AlignmentType.CENTER,
+
+                                    children:[
+
+                                        new TextRun({
+                                            text:tempat
+                                        })
+
+                                    ]
+
+                                }),
+
+                                new Paragraph(""),
+
+                                new Paragraph(""),
+
+                                new Paragraph(""),
+
+                                new Paragraph({
+
+                                    alignment:AlignmentType.CENTER,
+
+                                    children:[
+
+                                        new TextRun({
+                                            text:`${kaprodi}${gelarKaprodi ? ", " + gelarKaprodi : ""}`,
+                                            bold:true
+                                        })
+
+                                    ]
+
+                                }),
+
+                                new Paragraph({
+
+                                    alignment:AlignmentType.CENTER,
+
+                                    children:[
+
+                                        new TextRun({
+                                            text:`NIDN/NUPTK: ${nidnKaprodi}`
+                                        })
+
+                                    ]
+
+                                })
+
+                            ]
+
+                        })
+
+                    ]
+
+                })
+
+            ]
+
+        });
+
+
+        /* =========================
+           DOCUMENT
+        ========================= */
+
+        const doc = new Document({
+
+            sections:[{
+
+                properties:{
+
+                    page:{
+                        margin:{
+                            top:1000,
+                            bottom:1000,
+                            left:1000,
+                            right:1000
+                        }
+                    }
+
+                },
+
+                children:[
+
+                    ...kop,
+
+                    new Paragraph(""),
+
+                    new Paragraph({
+
+                        alignment:AlignmentType.CENTER,
+
+                        children:[
+
+                            new TextRun({
+                                text:"FORM PENILAIAN KPI DOSEN",
+                                bold:true,
+                                size:28
+                            })
+
+                        ]
+
+                    }),
+
+                    new Paragraph(""),
+
+                    identitas,
+
+                    new Paragraph(""),
+
+                    new Paragraph({
+
+                        children:[
+
+                            new TextRun({
+                                text:"PENILAIAN KPI",
+                                bold:true,
+                                size:24
+                            })
+
+                        ]
+
+                    }),
+
+                    kpiTable,
+
+                    new Paragraph(""),
+
+                    ...hasil,
+
+                    new Paragraph(""),
+
+                    new Paragraph({
+
+                        children:[
+
+                            new TextRun({
+                                text:"BUKTI PENDUKUNG",
+                                bold:true,
+                                size:24
+                            })
+
+                        ]
+
+                    }),
+
+                    ...buktiParagraphs,
+
+                    new Paragraph(""),
+
+                    ...catatanSection,
+
+                    new Paragraph(""),
+
+                    ttd
+
+                ]
+
+            }]
+
+        });
+
+
+        /* =========================
+           SAVE
+        ========================= */
+
+        const blob =
+            await Packer.toBlob(doc);
+
+
+        const namaFile =
+            namaDosen
+                .replace(/[^a-z0-9]/gi,"_")
+                .replace(/_+/g,"_");
+
+
+        saveAs(
+            blob,
+            `KPI_Dosen_${namaFile}.docx`
         );
 
 
-    const url =
-        URL.createObjectURL(blob);
+    }catch(error){
 
+        console.error(error);
 
-    const link =
-        document.createElement("a");
-
-
-    link.href =
-        url;
-
-
-    const safeName =
-        namaDosen
-        .replace(
-            /[^a-zA-Z0-9\s]/g,
-            ""
-        )
-        .replace(
-            /\s+/g,
-            "_"
+        alert(
+            "Gagal membuat Word.\n\n" +
+            "Coba refresh halaman terlebih dahulu."
         );
 
-
-    link.download =
-        "KPI_Dosen_" +
-        safeName +
-        ".doc";
-
-
-    document
-    .body
-    .appendChild(link);
-
-
-    link.click();
-
-
-    link.remove();
-
-
-    setTimeout(()=>{
-
-        URL.revokeObjectURL(url);
-
-    },1000);
+    }
 
 }
 
 
-/* =========================================================
-   DOWNLOAD BUTTON
-========================================================= */
+/* =========================
+   INIT
+========================= */
 
-document
-.getElementById("downloadWord")
-.addEventListener(
-    "click",
-    downloadWord
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        hitung();
+
+    }
 );
-
-
-/* =========================================================
-   START
-========================================================= */
-
-populateDosen();
-
-renderKpi();
-
-calculate();
 
 </script>
 
