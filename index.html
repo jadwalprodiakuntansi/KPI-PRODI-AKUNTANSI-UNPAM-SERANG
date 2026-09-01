@@ -291,13 +291,13 @@ function buildWordHTML(){
   return `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><title>KPI ${esc(d.name)}</title>
 <style>
-@page Section1{size:21cm 29.7cm;margin:8mm 14mm 10mm 14mm;mso-header-margin:0cm;mso-footer-margin:0cm;mso-paper-source:0}
+@page Section1{size:21cm 29.7cm;margin:5mm 6mm 9mm 6mm;mso-header-margin:0cm;mso-footer-margin:0cm;mso-paper-source:0}
 body{mso-page-orientation:portrait}
 .Section1{page:Section1}
 body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;color:#222;line-height:1.2;margin:0;padding:0}
-.kop{width:100%;text-align:center;margin:0 0 4px 0;padding:0;line-height:0}.kop img{width:180mm;max-width:100%;height:auto;display:block;margin:0 auto;padding:0}
+.kop{width:100%;text-align:center;margin:0;padding:0;line-height:0}.kop img{width:198mm;max-width:100%;height:auto;display:block;margin:0 auto;padding:0}
 .word-top{margin:0;padding:0}
-.line{border-bottom:2px solid #222;margin-top:4px;margin-bottom:14px}
+.line{border-bottom:1.5pt solid #222;margin:2px 0 9px 0;height:0;line-height:0}
 h2{text-align:center;font-size:14pt;margin:5px 0 12px;text-transform:uppercase}
 h3{font-size:11pt;margin:12px 0 6px}
 table{width:100%;border-collapse:collapse;table-layout:fixed}
@@ -308,9 +308,10 @@ th{background:#f0d2df;text-align:center;font-weight:bold}
 .summary td{border:1px solid #777}.summary .big{font-size:16pt;font-weight:bold}
 ul{margin:5px 0 10px 20px;padding:0}
 .note{border:1px solid #777;min-height:55px;padding:8px}
-.signature{margin-top:30px;width:100%;table-layout:fixed;border-collapse:collapse;border:0!important;mso-table-lspace:0pt;mso-table-rspace:0pt}
-.signature td{border:0!important;text-align:center;width:50%;vertical-align:top;padding:0 8px;line-height:1.05;mso-padding-alt:0 8px}
-.sig-space{height:52px;line-height:1px;font-size:1px}
+.signature{margin-top:24px;width:100%;border:0;padding:0}
+.sig-grid{width:100%;text-align:center;font-size:10.5pt;line-height:1.05;white-space:nowrap}
+.sig-col{display:inline-block;width:48%;vertical-align:top;text-align:center}
+.sig-space{height:48px;line-height:1px;font-size:1px}
 .name{font-weight:bold;text-decoration:underline;font-size:10.5pt;line-height:1.0;margin:0;padding:0;white-space:nowrap}
 .id{display:block;margin:2px 0 0;padding:0;font-size:9.5pt;line-height:1.0;white-space:nowrap}
 .place{text-align:left;margin-top:10px}
@@ -350,12 +351,20 @@ ul{margin:5px 0 10px 20px;padding:0}
 <h3>E. PENGESAHAN</h3>
 <div class="place">${esc(kota)}, ${esc(tanggalIndo())}</div>
 
-<table class="signature">
-<tr><td>Dosen yang Dinilai</td><td>Ketua Program Studi</td></tr>
-<tr><td class="sig-space"></td><td class="sig-space"></td></tr>
-<tr><td><span class="name">${esc(d.name+(d.title?", "+d.title:""))}</span><br><span class="id">NIDN/NUPTK: ${esc(d.id||"-")}</span></td>
-<td><span class="name">Iroh Rahmawati, S.E., M.Ak.</span><br><span class="id">NIDN: 0417108506</span></td></tr>
-</table>
+<div class="signature">
+  <div class="sig-grid">
+    <div class="sig-col">Dosen yang Dinilai</div>
+    <div class="sig-col">Ketua Program Studi</div>
+  </div>
+  <div class="sig-grid sig-space">
+    <div class="sig-col">&nbsp;</div>
+    <div class="sig-col">&nbsp;</div>
+  </div>
+  <div class="sig-grid">
+    <div class="sig-col"><span class="name">${esc(d.name+(d.title?", "+d.title:""))}</span><br><span class="id">NIDN/NUPTK: ${esc(d.id||"-")}</span></div>
+    <div class="sig-col"><span class="name">Iroh Rahmawati, S.E., M.Ak.</span><br><span class="id">NIDN: 0417108506</span></div>
+  </div>
+</div>
 
 <div class="footer">Sistem KPI Dosen · Program Studi Akuntansi · Universitas Pamulang Kampus Serang</div>
 </div></body></html>`;
