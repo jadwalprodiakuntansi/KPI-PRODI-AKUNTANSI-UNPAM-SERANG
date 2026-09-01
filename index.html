@@ -303,7 +303,7 @@ function buildWordHTML(){
 <style>
 @page Section1{
   size:21cm 29.7cm;
-  margin:8mm 8mm 10mm 8mm;
+  margin:10mm 10mm 12mm 10mm;
   mso-header-margin:0cm;
   mso-footer-margin:0cm;
   mso-paper-source:0;
@@ -338,7 +338,7 @@ body{
   vertical-align:top;
 }
 .kop-img{
-  width:193mm;
+  width:190mm;
   height:auto;
   max-width:100%;
   display:block;
@@ -364,16 +364,16 @@ h2{
 }
 h3{
   font-size:11.5pt;
-  margin:4mm 0 2mm 0;
+  margin:5mm 0 2.5mm 0;
   padding:0;
   font-weight:bold;
 }
 .identity{
-  width:100%;
+  width:92%;
   border:0;
   border-collapse:collapse;
   table-layout:fixed;
-  margin:0 0 2mm 0;
+  margin:0 auto 2mm auto;
 }
 .identity td{
   border:0;
@@ -383,10 +383,10 @@ h3{
 .identity .label{width:30%;font-weight:bold;}
 .identity .value{width:70%;}
 .kpi{
-  width:100%;
+  width:92%;
   border-collapse:collapse;
   table-layout:fixed;
-  margin:0;
+  margin:0 auto;
   page-break-inside:auto;
 }
 .kpi th,.kpi td{
@@ -412,10 +412,10 @@ h3{
 .kpi th:nth-child(7){width:10%;}
 .kpi th:nth-child(8){width:11%;}
 .summary{
-  width:100%;
+  width:92%;
   border-collapse:collapse;
   table-layout:fixed;
-  margin:4mm 0 1mm 0;
+  margin:4mm auto 1mm auto;
 }
 .summary td{
   border:1px solid #777;
@@ -428,10 +428,10 @@ ul{
   padding-left:5mm;
 }
 .note-box{
-  width:100%;
+  width:92%;
   border-collapse:collapse;
   table-layout:fixed;
-  margin:0;
+  margin:0 auto;
 }
 .note-box td{
   border:1px solid #777;
@@ -440,17 +440,18 @@ ul{
   vertical-align:top;
 }
 .place{
-  margin:1mm 0 3mm 0;
+  width:92%;
+  margin:1mm auto 3mm auto;
   padding:0;
 }
 .signature-title,
 .signature-space,
 .signature-names{
-  width:100%;
+  width:92%;
   border:0;
   border-collapse:collapse;
   table-layout:fixed;
-  margin:0;
+  margin:0 auto;
   padding:0;
 }
 .signature-title td,
@@ -513,7 +514,7 @@ ul{
 
   <div class="keep">
     <h3>A. DATA DOSEN</h3>
-    <table class="identity" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <table class="identity" width="92%" border="0" cellspacing="0" cellpadding="0">
       <tr><td class="label">Nama Dosen</td><td class="value">: <b>${esc(namaLengkap)}</b></td></tr>
       <tr><td class="label">NIDN / NUPTK</td><td class="value">: <b>${esc(idDosen)}</b></td></tr>
       <tr><td class="label">Jabatan / Status</td><td class="value">: ${esc(jabatan)}</td></tr>
@@ -522,12 +523,12 @@ ul{
   </div>
 
   <h3>B. PENILAIAN KPI</h3>
-  <table class="kpi" width="100%" border="1" cellspacing="0" cellpadding="0">
+  <table class="kpi" width="92%" border="1" cellspacing="0" cellpadding="0">
     <thead><tr><th>No</th><th>Komponen KPI</th><th>Indikator</th><th>Target</th><th>Bobot</th><th>Capaian</th><th>Skor</th><th>Nilai</th></tr></thead>
     <tbody>${rows}</tbody>
   </table>
 
-  <table class="summary" width="100%" border="1" cellspacing="0" cellpadding="0">
+  <table class="summary" width="92%" border="1" cellspacing="0" cellpadding="0">
     <tr>
       <td width="50%"><b>NILAI AKHIR</b><br><span class="big">${res.total.toFixed(2)}</span> / 100</td>
       <td width="50%"><b>KATEGORI</b><br><span class="big">${esc(res.cat)}</span></td>
@@ -539,20 +540,20 @@ ul{
     <ul>${evidenceList()}</ul>
 
     <h3>D. CATATAN DOSEN</h3>
-    <table class="note-box" width="100%" border="1" cellspacing="0" cellpadding="0"><tr><td>${esc(catatan).replace(/\n/g,"<br>")}</td></tr></table>
+    <table class="note-box" width="92%" border="1" cellspacing="0" cellpadding="0"><tr><td>${esc(catatan).replace(/\n/g,"<br>")}</td></tr></table>
   </div>
 
   <div class="keep">
     <h3>E. PENGESAHAN</h3>
     <div class="place">${esc(kota)}, ${esc(tanggalIndo())}</div>
 
-    <table class="signature-title" width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+    <table class="signature-title" width="92%" border="0" cellspacing="0" cellpadding="0" role="presentation">
       <tr><td width="50%" align="center">Dosen yang Dinilai</td><td width="50%" align="center">Ketua Program Studi</td></tr>
     </table>
-    <table class="signature-space" width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+    <table class="signature-space" width="92%" border="0" cellspacing="0" cellpadding="0" role="presentation">
       <tr><td width="50%" align="center">&nbsp;</td><td width="50%" align="center">&nbsp;</td></tr>
     </table>
-    <table class="signature-names" width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+    <table class="signature-names" width="92%" border="0" cellspacing="0" cellpadding="0" role="presentation">
       <tr>
         <td width="50%" align="center">
           <b><u>${esc(namaLengkap)}</u></b><br>
