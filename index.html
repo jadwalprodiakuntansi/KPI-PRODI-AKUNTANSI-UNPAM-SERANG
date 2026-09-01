@@ -142,22 +142,35 @@ button{border:0;border-radius:15px;padding:15px 24px;font-size:17px;font-weight:
    ========================================================= */
 const DOSEN = [
   {name:"Achmad Khusnul Iman", title:"S.E., M.Ak.", id:"6534771672130223"},
-  {name:"Ayu Septiana Putri", title:"", id:""},
-  {name:"Didik Setiawan", title:"", id:""},
-  {name:"Dwi Fitrianingsih", title:"", id:""},
-  {name:"Eko Pujiyono", title:"", id:""},
-  {name:"Erimina Halawa", title:"", id:""},
-  {name:"Fadli Nuryasin", title:"S.E., M.Ak.", id:""},
-  {name:"Indah Kristianti", title:"", id:""},
-  {name:"Ingga Maulana", title:"", id:""},
-  {name:"Irna Maya Sari", title:"", id:""},
-  {name:"Iroh Rahmawati", title:"S.E., M.Ak.", id:"0417108506"},
-  {name:"Kahfi Fikrianoor", title:"", id:""},
-  {name:"Lamsah", title:"", id:""},
-  {name:"Listia Aulia Indy", title:"", id:""},
-  {name:"Muchamad Rizky Fauzy", title:"", id:""},
-  {name:"Nistri Kusumawardani", title:"", id:""},
-  {name:"Raden Jaka Lunta Perbawa", title:"S.E., M.Ak.", id:"98927492742942"}
+  {name:"Ahmad Syuheri", title:"S.Ak., M.Ak.", id:"7733775676130242"},
+  {name:"Akhmad Nofiata", title:"S.E., M.Ak.", id:"9435767668130333"},
+  {name:"Arif Wahyu Nur Kholid", title:"S.Ak., M.Ak.", id:"7155777678130133"},
+  {name:"Arifatun Nasihah", title:"S.Ak., M.Ak.", id:"9041774675230273"},
+  {name:"Ayu Septiana Putri", title:"S.Ak., M.Ak.", id:"0246778679230083"},
+  {name:"Didik Setiawan", title:"S.Ak., M.Ak.", id:"0341773674130303"},
+  {name:"Dwi Fitrianingsih", title:"S.E., M.Ak.", id:"0401108604 / 0333764665230293"},
+  {name:"Eko Pujiyono", title:"S.E., M.Ak.", id:"8033768669130423"},
+  {name:"Erimina Halawa", title:"S.Ak., M.Ak", id:"8447774675230262"},
+  {name:"Fadli Nuryasin", title:"S.E., M.Ak.", id:"6843772673130252"},
+  {name:"Indah Kristianti", title:"S.Ak., M.Ak.", id:"9661776677230162"},
+  {name:"Ingga Maulana", title:"S.Ak., M.Ak.", id:"1553775676130143"},
+  {name:"Irna Maya Sari", title:"S.E., M.Ak", id:"0401028902 / 1533767668230312"},
+  {name:"Iroh Rahmawati", title:"S.E., M.Ak.", id:"0417108506 / 0349763665220013"},
+  {name:"Kahfi Fikrianoor", title:"S.E., M.Sc", id:"1547778679130112"},
+  {name:"Lamsah", title:"S.E., M.M., M.Ak.", id:"0403078803 / 7035766667230313"},
+  {name:"Listia Aulia Indy", title:"S.Ak., M.Ak", id:"4939776677230162"},
+  {name:"Muchamad Rizky Fauzy", title:"S.E., M.Tre", id:"7858775676130142"},
+  {name:"Nistri Kusumawardani", title:"S.E., M.Ak", id:"3438770671230333"},
+  {name:"Rahadian Amrullah", title:"S.Pd., M.Ak", id:"0403119105 / 0435769670310293"},
+  {name:"Ricka Hidayati Chaniago", title:"S.Ak., M.Ak.", id:"2363778679230053"},
+  {name:"Ririn Sari Dewi", title:"S.E., M.Ak.", id:"0405079102 / 9037769670231053"},
+  {name:"Rismawati", title:"S.E., M.Ak", id:"5340776677230133"},
+  {name:"Rupianna Tambunan", title:"S.E., M.Ak", id:"1854768669230312"},
+  {name:"Shally Khomilah", title:"S.E., M.Ak", id:"2257774675230203"},
+  {name:"Vani Vauliyanti", title:"S.E., M.Ak.", id:"7351775676230183"},
+  {name:"Yayah Syahriyah", title:"S.Ak., M.Ak.", id:"7645773674230322"},
+  {name:"Yudha Eka Febrian", title:"S.E., M.Ak.", id:"3541771672130302"},
+  {name:"Yuliyanti", title:"S.Pd., M.Pd", id:"5834774675230262"}
 ];
 
 const KPI = [
@@ -278,9 +291,12 @@ function buildWordHTML(){
   return `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><title>KPI ${esc(d.name)}</title>
 <style>
-@page{size:A4;margin:18mm 18mm 18mm 18mm}
-body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;color:#222;line-height:1.25;margin:0}
-.kop{width:100%;text-align:center;margin-bottom:10px}.kop img{width:100%;max-width:174mm;height:auto;display:block;margin:0 auto}
+@page Section1{size:21cm 29.7cm;margin:8mm 14mm 10mm 14mm;mso-header-margin:0cm;mso-footer-margin:0cm;mso-paper-source:0}
+body{mso-page-orientation:portrait}
+.Section1{page:Section1}
+body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;color:#222;line-height:1.2;margin:0;padding:0}
+.kop{width:100%;text-align:center;margin:0 0 4px 0;padding:0;line-height:0}.kop img{width:180mm;max-width:100%;height:auto;display:block;margin:0 auto;padding:0}
+.word-top{margin:0;padding:0}
 .line{border-bottom:2px solid #222;margin-top:4px;margin-bottom:14px}
 h2{text-align:center;font-size:14pt;margin:5px 0 12px;text-transform:uppercase}
 h3{font-size:11pt;margin:12px 0 6px}
@@ -292,16 +308,16 @@ th{background:#f0d2df;text-align:center;font-weight:bold}
 .summary td{border:1px solid #777}.summary .big{font-size:16pt;font-weight:bold}
 ul{margin:5px 0 10px 20px;padding:0}
 .note{border:1px solid #777;min-height:55px;padding:8px}
-.signature{margin-top:38px;table-layout:fixed;border-collapse:collapse}
-.signature td{border:0!important;text-align:center;width:50%;vertical-align:top;padding:0 18px;line-height:1.1}
-.sig-space{height:58px;line-height:1px;font-size:1px}
-.name{font-weight:bold;text-decoration:underline;font-size:10.5pt;line-height:1.05;margin:0;padding:0;white-space:nowrap}
-.id{margin:1px 0 0;padding:0;font-size:9.5pt;line-height:1.05;white-space:nowrap}
-.place{text-align:left;margin-top:22px}
+.signature{margin-top:30px;width:100%;table-layout:fixed;border-collapse:collapse;border:0!important;mso-table-lspace:0pt;mso-table-rspace:0pt}
+.signature td{border:0!important;text-align:center;width:50%;vertical-align:top;padding:0 8px;line-height:1.05;mso-padding-alt:0 8px}
+.sig-space{height:52px;line-height:1px;font-size:1px}
+.name{font-weight:bold;text-decoration:underline;font-size:10.5pt;line-height:1.0;margin:0;padding:0;white-space:nowrap}
+.id{display:block;margin:2px 0 0;padding:0;font-size:9.5pt;line-height:1.0;white-space:nowrap}
+.place{text-align:left;margin-top:10px}
 .footer{font-size:8pt;color:#666;text-align:center;margin-top:18px}
 .page-break{page-break-before:always}
 </style></head><body>
-<div class="kop"><img src="${KOP_SURAT_JPG}" alt="Kop Surat Universitas Pamulang Kampus Serang"></div>
+<div class="Section1"><div class="word-top"></div><div class="kop"><img src="${KOP_SURAT_JPG}" alt="Kop Surat Universitas Pamulang Kampus Serang"></div>
 <div class="line"></div>
 
 <h2>FORM PENILAIAN KINERJA DOSEN (KPI)</h2>
@@ -342,7 +358,7 @@ ul{margin:5px 0 10px 20px;padding:0}
 </table>
 
 <div class="footer">Sistem KPI Dosen · Program Studi Akuntansi · Universitas Pamulang Kampus Serang</div>
-</body></html>`;
+</div></body></html>`;
 }
 
 function downloadWord(){
@@ -352,7 +368,7 @@ function downloadWord(){
   const url=URL.createObjectURL(blob);
   const a=document.createElement("a");
   a.href=url;
-  a.download="KPI_Dosen_"+(d.name||"Dosen").replace(/[^\w\s.-]/g,"").replace(/\s+/g,"_")+".doc";
+  a.download="FORM_KPI_DOSEN_"+(d.name||"Dosen").replace(/[^\w\s.-]/g,"").replace(/\s+/g,"_")+".doc";
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1500);
   document.getElementById("status").textContent="✓ Word berhasil dibuat. File .doc dapat langsung dibuka di Microsoft Word.";
