@@ -292,11 +292,11 @@ th{background:#f0d2df;text-align:center;font-weight:bold}
 .summary td{border:1px solid #777}.summary .big{font-size:16pt;font-weight:bold}
 ul{margin:5px 0 10px 20px;padding:0}
 .note{border:1px solid #777;min-height:55px;padding:8px}
-.signature{margin-top:42px;table-layout:fixed}
-.signature td{border:0;text-align:center;width:50%;vertical-align:top;padding:0 20px}
-.sig-space{height:55px}
-.name{font-weight:bold;text-decoration:underline;font-size:10.5pt}
-.id{margin-top:6px;font-size:9.5pt}
+.signature{margin-top:38px;table-layout:fixed;border-collapse:collapse}
+.signature td{border:0!important;text-align:center;width:50%;vertical-align:top;padding:0 18px;line-height:1.1}
+.sig-space{height:58px;line-height:1px;font-size:1px}
+.name{font-weight:bold;text-decoration:underline;font-size:10.5pt;line-height:1.05;margin:0;padding:0;white-space:nowrap}
+.id{margin:1px 0 0;padding:0;font-size:9.5pt;line-height:1.05;white-space:nowrap}
 .place{text-align:left;margin-top:22px}
 .footer{font-size:8pt;color:#666;text-align:center;margin-top:18px}
 .page-break{page-break-before:always}
@@ -337,8 +337,8 @@ ul{margin:5px 0 10px 20px;padding:0}
 <table class="signature">
 <tr><td>Dosen yang Dinilai</td><td>Ketua Program Studi</td></tr>
 <tr><td class="sig-space"></td><td class="sig-space"></td></tr>
-<tr><td><div class="name">${esc(d.name+(d.title?", "+d.title:""))}</div><div class="id">NIDN/NUPTK: ${esc(d.id||"-")}</div></td>
-<td><div class="name">Iroh Rahmawati, S.E., M.Ak.</div><div class="id">NIDN: 0417108506</div></td></tr>
+<tr><td><span class="name">${esc(d.name+(d.title?", "+d.title:""))}</span><br><span class="id">NIDN/NUPTK: ${esc(d.id||"-")}</span></td>
+<td><span class="name">Iroh Rahmawati, S.E., M.Ak.</span><br><span class="id">NIDN: 0417108506</span></td></tr>
 </table>
 
 <div class="footer">Sistem KPI Dosen · Program Studi Akuntansi · Universitas Pamulang Kampus Serang</div>
