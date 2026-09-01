@@ -276,98 +276,300 @@ function buildWordHTML(){
   const catatan=document.getElementById("catatan").value.trim()||"-";
   const kota=document.getElementById("kota").value.trim()||"Serang";
   const res=hitung();
+  const namaLengkap=d.name+(d.title?", "+d.title:"");
+  const idDosen=d.id||"-";
 
   const rows=KPI.map((k,i)=>{
     const c=parseFloat(document.querySelectorAll(".capaian")[i].value)||0;
     const n=c*k.bobot/100;
     return `<tr>
-      <td style="text-align:center">${i+1}</td>
-      <td>${esc(k.komponen)}</td><td>${esc(k.indikator)}</td><td style="text-align:center">${esc(k.target)}</td>
-      <td style="text-align:center">${k.bobot}%</td><td style="text-align:center">${c.toFixed(2)}</td>
-      <td style="text-align:center">${c.toFixed(2)}</td><td style="text-align:center">${n.toFixed(2)}</td>
+      <td class="c">${i+1}</td>
+      <td>${esc(k.komponen)}</td>
+      <td>${esc(k.indikator)}</td>
+      <td class="c">${esc(k.target)}</td>
+      <td class="c">${k.bobot}%</td>
+      <td class="c">${c.toFixed(2)}</td>
+      <td class="c">${c.toFixed(2)}</td>
+      <td class="c">${n.toFixed(2)}</td>
     </tr>`;
   }).join("");
 
   return `<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>KPI ${esc(d.name)}</title>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="UTF-8">
+<title>FORM KPI DOSEN - ${esc(namaLengkap)}</title>
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->
 <style>
-@page Section1{size:21cm 29.7cm;margin:5mm 6mm 9mm 6mm;mso-header-margin:0cm;mso-footer-margin:0cm;mso-paper-source:0}
-body{mso-page-orientation:portrait}
-.Section1{page:Section1}
-body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;color:#222;line-height:1.2;margin:0;padding:0}
-.kop{width:100%;text-align:center;margin:0;padding:0;line-height:0}.kop img{width:198mm;max-width:100%;height:auto;display:block;margin:0 auto;padding:0}
-.word-top{margin:0;padding:0}
-.line{border-bottom:1.5pt solid #222;margin:2px 0 9px 0;height:0;line-height:0}
-h2{text-align:center;font-size:14pt;margin:5px 0 12px;text-transform:uppercase}
-h3{font-size:11pt;margin:12px 0 6px}
-table{width:100%;border-collapse:collapse;table-layout:fixed}
-th,td{border:1px solid #555;padding:5px 5px;vertical-align:middle}
-th{background:#f0d2df;text-align:center;font-weight:bold}
-.kpi th:nth-child(1){width:5%}.kpi th:nth-child(2){width:17%}.kpi th:nth-child(3){width:25%}.kpi th:nth-child(4){width:13%}.kpi th:nth-child(5){width:8%}.kpi th:nth-child(6){width:11%}.kpi th:nth-child(7){width:10%}.kpi th:nth-child(8){width:11%}
-.identity td{border:0;padding:3px 0}.label{font-weight:bold;width:30%}.value{width:70%}
-.summary td{border:1px solid #777}.summary .big{font-size:16pt;font-weight:bold}
-ul{margin:5px 0 10px 20px;padding:0}
-.note{border:1px solid #777;min-height:55px;padding:8px}
-.signature{margin-top:24px;width:100%;border:0;padding:0}
-.sig-grid{width:100%;text-align:center;font-size:10.5pt;line-height:1.05;white-space:nowrap}
-.sig-col{display:inline-block;width:48%;vertical-align:top;text-align:center}
-.sig-space{height:48px;line-height:1px;font-size:1px}
-.name{font-weight:bold;text-decoration:underline;font-size:10.5pt;line-height:1.0;margin:0;padding:0;white-space:nowrap}
-.id{display:block;margin:2px 0 0;padding:0;font-size:9.5pt;line-height:1.0;white-space:nowrap}
-.place{text-align:left;margin-top:10px}
-.footer{font-size:8pt;color:#666;text-align:center;margin-top:18px}
-.page-break{page-break-before:always}
-</style></head><body>
-<div class="Section1"><div class="word-top"></div><div class="kop"><img src="${KOP_SURAT_JPG}" alt="Kop Surat Universitas Pamulang Kampus Serang"></div>
-<div class="line"></div>
-
-<h2>FORM PENILAIAN KINERJA DOSEN (KPI)</h2>
-
-<h3>A. DATA DOSEN</h3>
-<table class="identity">
-<tr><td class="label">Nama Dosen</td><td class="value">: <b>${esc(d.name+(d.title?", "+d.title:""))}</b></td></tr>
-<tr><td class="label">NIDN / NUPTK</td><td class="value">: <b>${esc(d.id||"-")}</b></td></tr>
-<tr><td class="label">Jabatan / Status</td><td class="value">: ${esc(jabatan)}</td></tr>
-<tr><td class="label">Periode Penilaian</td><td class="value">: ${esc(periode)}</td></tr>
-</table>
-
-<h3>B. PENILAIAN KPI</h3>
-<table class="kpi">
-<thead><tr><th>No</th><th>Komponen KPI</th><th>Indikator</th><th>Target</th><th>Bobot</th><th>Capaian</th><th>Skor</th><th>Nilai</th></tr></thead>
-<tbody>${rows}</tbody>
-</table>
-
-<table class="summary" style="margin-top:10px">
-<tr><td style="width:50%"><b>NILAI AKHIR</b><br><span class="big">${res.total.toFixed(2)}</span> / 100</td>
-<td><b>KATEGORI</b><br><span class="big">${esc(res.cat)}</span></td></tr>
-</table>
-
-<h3>C. BUKTI PENDUKUNG</h3>
-<ul>${evidenceList()}</ul>
-
-<h3>D. CATATAN DOSEN</h3>
-<div class="note">${esc(catatan).replace(/\n/g,"<br>")}</div>
-
-<h3>E. PENGESAHAN</h3>
-<div class="place">${esc(kota)}, ${esc(tanggalIndo())}</div>
-
-<div class="signature">
-  <div class="sig-grid">
-    <div class="sig-col">Dosen yang Dinilai</div>
-    <div class="sig-col">Ketua Program Studi</div>
+@page Section1{
+  size:21cm 29.7cm;
+  margin:8mm 8mm 10mm 8mm;
+  mso-header-margin:0cm;
+  mso-footer-margin:0cm;
+  mso-paper-source:0;
+}
+body{
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:10.5pt;
+  color:#222;
+  line-height:1.15;
+}
+.Section1{page:Section1;}
+.kop-wrap{
+  width:100%;
+  margin:0;
+  padding:0;
+  text-align:center;
+}
+.kop-table{
+  width:100%;
+  border:0;
+  border-collapse:collapse;
+  margin:0;
+  padding:0;
+}
+.kop-table td{
+  border:0;
+  padding:0;
+  margin:0;
+  text-align:center;
+  vertical-align:top;
+}
+.kop-img{
+  width:193mm;
+  height:auto;
+  max-width:100%;
+  display:block;
+  margin:0 auto;
+  padding:0;
+}
+.kop-line{
+  border:0;
+  border-top:1.5pt solid #222;
+  height:0;
+  margin:1mm 0 3mm 0;
+  padding:0;
+  font-size:1px;
+  line-height:1px;
+}
+h2{
+  text-align:center;
+  font-size:15pt;
+  margin:0 0 5mm 0;
+  padding:0;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+h3{
+  font-size:11.5pt;
+  margin:4mm 0 2mm 0;
+  padding:0;
+  font-weight:bold;
+}
+.identity{
+  width:100%;
+  border:0;
+  border-collapse:collapse;
+  table-layout:fixed;
+  margin:0 0 2mm 0;
+}
+.identity td{
+  border:0;
+  padding:1mm 0;
+  vertical-align:top;
+}
+.identity .label{width:30%;font-weight:bold;}
+.identity .value{width:70%;}
+.kpi{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  margin:0;
+  page-break-inside:auto;
+}
+.kpi th,.kpi td{
+  border:1px solid #555;
+  padding:2.5mm 1.5mm;
+  vertical-align:middle;
+  word-wrap:break-word;
+}
+.kpi th{
+  background:#f0d2df;
+  text-align:center;
+  font-weight:bold;
+  font-size:9.5pt;
+}
+.kpi td{font-size:9pt;}
+.kpi .c{text-align:center;}
+.kpi th:nth-child(1){width:5%;}
+.kpi th:nth-child(2){width:17%;}
+.kpi th:nth-child(3){width:25%;}
+.kpi th:nth-child(4){width:13%;}
+.kpi th:nth-child(5){width:8%;}
+.kpi th:nth-child(6){width:11%;}
+.kpi th:nth-child(7){width:10%;}
+.kpi th:nth-child(8){width:11%;}
+.summary{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  margin:4mm 0 1mm 0;
+}
+.summary td{
+  border:1px solid #777;
+  padding:3mm;
+  vertical-align:middle;
+}
+.summary .big{font-size:15pt;font-weight:bold;}
+ul{
+  margin:1mm 0 2mm 6mm;
+  padding-left:5mm;
+}
+.note-box{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  margin:0;
+}
+.note-box td{
+  border:1px solid #777;
+  padding:3mm;
+  min-height:18mm;
+  vertical-align:top;
+}
+.place{
+  margin:1mm 0 3mm 0;
+  padding:0;
+}
+.signature-title,
+.signature-space,
+.signature-names{
+  width:100%;
+  border:0;
+  border-collapse:collapse;
+  table-layout:fixed;
+  margin:0;
+  padding:0;
+}
+.signature-title td,
+.signature-space td,
+.signature-names td{
+  border:0 !important;
+  padding:0;
+  text-align:center;
+  vertical-align:top;
+}
+.signature-title td{
+  font-size:10.5pt;
+  height:7mm;
+}
+.signature-space td{
+  height:22mm;
+  font-size:1pt;
+  line-height:1pt;
+}
+.signature-names td{
+  font-size:10.5pt;
+  line-height:1.05;
+}
+.signature-names .name{
+  display:block;
+  font-weight:bold;
+  text-decoration:underline;
+  white-space:nowrap;
+  margin:0;
+  padding:0;
+}
+.signature-names .id{
+  display:block;
+  font-size:9.5pt;
+  margin:1mm 0 0 0;
+  padding:0;
+  white-space:nowrap;
+}
+.footer{
+  width:100%;
+  text-align:center;
+  font-size:8pt;
+  color:#666;
+  margin:4mm 0 0 0;
+  padding:0;
+}
+.keep{page-break-inside:avoid;}
+</style>
+</head>
+<body>
+<div class="Section1">
+  <div class="kop-wrap">
+    <table class="kop-table" role="presentation"><tr><td>
+      <img class="kop-img" src="${KOP_SURAT_JPG}" alt="Kop Surat Universitas Pamulang Kampus Serang">
+    </td></tr></table>
+    <div class="kop-line"></div>
   </div>
-  <div class="sig-grid sig-space">
-    <div class="sig-col">&nbsp;</div>
-    <div class="sig-col">&nbsp;</div>
+
+  <h2>FORM PENILAIAN KINERJA DOSEN (KPI)</h2>
+
+  <div class="keep">
+    <h3>A. DATA DOSEN</h3>
+    <table class="identity" width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr><td class="label">Nama Dosen</td><td class="value">: <b>${esc(namaLengkap)}</b></td></tr>
+      <tr><td class="label">NIDN / NUPTK</td><td class="value">: <b>${esc(idDosen)}</b></td></tr>
+      <tr><td class="label">Jabatan / Status</td><td class="value">: ${esc(jabatan)}</td></tr>
+      <tr><td class="label">Periode Penilaian</td><td class="value">: ${esc(periode)}</td></tr>
+    </table>
   </div>
-  <div class="sig-grid">
-    <div class="sig-col"><span class="name">${esc(d.name+(d.title?", "+d.title:""))}</span><br><span class="id">NIDN/NUPTK: ${esc(d.id||"-")}</span></div>
-    <div class="sig-col"><span class="name">Iroh Rahmawati, S.E., M.Ak.</span><br><span class="id">NIDN: 0417108506</span></div>
+
+  <h3>B. PENILAIAN KPI</h3>
+  <table class="kpi" width="100%" border="1" cellspacing="0" cellpadding="0">
+    <thead><tr><th>No</th><th>Komponen KPI</th><th>Indikator</th><th>Target</th><th>Bobot</th><th>Capaian</th><th>Skor</th><th>Nilai</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+
+  <table class="summary" width="100%" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="50%"><b>NILAI AKHIR</b><br><span class="big">${res.total.toFixed(2)}</span> / 100</td>
+      <td width="50%"><b>KATEGORI</b><br><span class="big">${esc(res.cat)}</span></td>
+    </tr>
+  </table>
+
+  <div class="keep">
+    <h3>C. BUKTI PENDUKUNG</h3>
+    <ul>${evidenceList()}</ul>
+
+    <h3>D. CATATAN DOSEN</h3>
+    <table class="note-box" width="100%" border="1" cellspacing="0" cellpadding="0"><tr><td>${esc(catatan).replace(/\n/g,"<br>")}</td></tr></table>
   </div>
+
+  <div class="keep">
+    <h3>E. PENGESAHAN</h3>
+    <div class="place">${esc(kota)}, ${esc(tanggalIndo())}</div>
+
+    <table class="signature-title" width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+      <tr><td width="50%" align="center">Dosen yang Dinilai</td><td width="50%" align="center">Ketua Program Studi</td></tr>
+    </table>
+    <table class="signature-space" width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+      <tr><td width="50%" align="center">&nbsp;</td><td width="50%" align="center">&nbsp;</td></tr>
+    </table>
+    <table class="signature-names" width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+      <tr>
+        <td width="50%" align="center">
+          <b><u>${esc(namaLengkap)}</u></b><br>
+          <span class="id">NIDN/NUPTK: ${esc(idDosen)}</span>
+        </td>
+        <td width="50%" align="center">
+          <b><u>Iroh Rahmawati, S.E., M.Ak.</u></b><br>
+          <span class="id">NIDN: 0417108506</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer">Sistem KPI Dosen · Program Studi Akuntansi · Universitas Pamulang Kampus Serang</div>
 </div>
-
-<div class="footer">Sistem KPI Dosen · Program Studi Akuntansi · Universitas Pamulang Kampus Serang</div>
-</div></body></html>`;
+</body>
+</html>`;
 }
 
 function downloadWord(){
