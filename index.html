@@ -45,7 +45,28 @@ button{border:0;border-radius:15px;padding:15px 24px;font-size:17px;font-weight:
 .footer{text-align:center;padding:35px;color:#a17489}
 .hidden{display:none!important}
 .note{min-height:130px;resize:vertical}
-@media(max-width:850px){.grid2,.result-grid{grid-template-columns:1fr}.evidence-grid{grid-template-columns:1fr}.container{padding:14px}.hero{padding:25px}.card{padding:20px}}
+
+/* =========================
+   AI AKUNTANSI - CATATAN
+   Berjalan langsung di browser, tanpa API key.
+   ========================= */
+.ai-panel{margin-top:18px;border:1px solid #efc5d8;border-radius:20px;background:linear-gradient(135deg,#fff7fb,#fff0f6);padding:20px}
+.ai-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ai-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#c72f73,#eb629a);color:#fff;display:grid;place-items:center;font-size:22px;box-shadow:0 8px 18px rgba(199,47,115,.18)}
+.ai-head h3{margin:0;color:#5b2945;font-size:20px}.ai-head p{margin:3px 0 0;color:#9a7285;font-size:13px}
+.ai-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.ai-question{min-height:52px;resize:vertical}
+.ai-buttons{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.ai-chip{border:1px solid #e8bfd2;background:#fff;color:#8b3b62;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:700;cursor:pointer}
+.ai-chip:hover{background:#fde5ef}
+.ai-answer{margin-top:14px;border-radius:16px;background:#fff;border:1px solid #efd3df;padding:14px 16px;color:#604957;line-height:1.55;white-space:pre-wrap;display:none}
+.ai-answer.show{display:block}
+.ai-answer strong{color:#63304b}
+.ai-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn-ai{background:linear-gradient(90deg,#c52e70,#e34f8d);color:#fff;padding:11px 16px;border-radius:12px;font-size:14px}
+.btn-ai-secondary{background:#fff;color:#713b58;border:1px solid #e6c9d7;padding:11px 16px;border-radius:12px;font-size:14px}
+.ai-mini{margin-top:9px;font-size:12px;color:#a3788b}
+@media(max-width:850px){.grid2,.result-grid{grid-template-columns:1fr}.evidence-grid{grid-template-columns:1fr}.container{padding:14px}.hero{padding:25px}.card{padding:20px}.ai-row{grid-template-columns:1fr}.ai-actions .btn-ai,.ai-actions .btn-ai-secondary{width:100%}}
 </style>
 </head>
 <body>
@@ -111,6 +132,32 @@ button{border:0;border-radius:15px;padding:15px 24px;font-size:17px;font-weight:
   <section class="card">
     <div class="section-title"><div class="badge">04</div><div><h2>Catatan Dosen</h2><p>Catatan ini akan otomatis dicantumkan pada dokumen Word hasil download.</p></div></div>
     <textarea id="catatan" class="note" placeholder="Tulis catatan, rekomendasi, atau tindak lanjut untuk dosen..."></textarea>
+
+    <div class="ai-panel">
+      <div class="ai-head">
+        <div class="ai-icon">✨</div>
+        <div>
+          <h3>AI Akuntansi · Tanya AI Accounting</h3>
+          <p>Bantu menyusun catatan evaluasi berdasarkan hasil KPI yang sedang diisi.</p>
+        </div>
+      </div>
+      <div class="ai-row">
+        <textarea id="aiQuestion" class="ai-question" placeholder="Contoh: Buatkan catatan evaluasi yang profesional untuk dosen ini..."></textarea>
+        <button type="button" class="btn-ai" id="askAiBtn">✨ Tanya AI Accounting</button>
+      </div>
+      <div class="ai-buttons">
+        <button type="button" class="ai-chip" data-ai="catatan">Buat catatan evaluasi</button>
+        <button type="button" class="ai-chip" data-ai="rekomendasi">Buat rekomendasi</button>
+        <button type="button" class="ai-chip" data-ai="tindak">Buat tindak lanjut</button>
+        <button type="button" class="ai-chip" data-ai="ringkas">Ringkas hasil KPI</button>
+      </div>
+      <div id="aiAnswer" class="ai-answer"></div>
+      <div class="ai-actions" id="aiActions" style="display:none">
+        <button type="button" class="btn-ai-secondary" id="useAiNoteBtn">↳ Masukkan ke Catatan Dosen</button>
+        <button type="button" class="btn-ai-secondary" id="copyAiBtn">⧉ Salin hasil AI</button>
+      </div>
+      <div class="ai-mini">AI Akuntansi versi web ini berjalan langsung di browser, jadi tidak membutuhkan API key dan aman dipakai di GitHub Pages.</div>
+    </div>
   </section>
 
   <section class="card">
@@ -598,6 +645,106 @@ ul{margin:1mm 0 2mm 6mm;padding-left:5mm;}
 </html>`;
 }
 
+/* =========================================================
+   AI AKUNTANSI / TANYA AI ACCOUNTING
+   Mesin rekomendasi lokal agar tetap aman di GitHub Pages.
+   Tidak menyimpan atau mengirim data dosen ke server.
+   ========================================================= */
+const aiQuestionEl=document.getElementById("aiQuestion");
+const aiAnswerEl=document.getElementById("aiAnswer");
+const aiActionsEl=document.getElementById("aiActions");
+let lastAiText="";
+
+function getKpiSnapshot(){
+  return KPI.map((k,i)=>{
+    const el=document.querySelectorAll(".capaian")[i];
+    let c=parseFloat(el?.value); if(!Number.isFinite(c)) c=0;
+    c=Math.max(0,Math.min(100,c));
+    return { ...k, capaian:c, nilai:c*k.bobot/100 };
+  });
+}
+
+function aiLevel(total){
+  if(total>=85) return "Sangat Baik";
+  if(total>=75) return "Baik";
+  if(total>=60) return "Cukup";
+  if(total>0) return "Perlu Peningkatan";
+  return "Belum Dinilai";
+}
+
+function aiBuildText(mode, question){
+  const d=getDosen();
+  const nama=[d.name,d.title].filter(Boolean).join(", ");
+  const data=getKpiSnapshot();
+  const total=data.reduce((a,x)=>a+x.nilai,0);
+  const kategori=aiLevel(total);
+  const terbaik=[...data].sort((a,b)=>b.capaian-a.capaian).slice(0,2);
+  const perlu=[...data].sort((a,b)=>a.capaian-b.capaian).slice(0,2);
+  const rendah=data.filter(x=>x.capaian<75);
+  const bukti=[...document.querySelectorAll(".evidenceCheck:checked")].map(x=>x.value);
+
+  const pembuka=`Dosen yang dinilai: ${nama}. Nilai akhir ${total.toFixed(2)}/100 (${kategori}).`;
+  const kekuatan=terbaik.length?`Kekuatan utama terlihat pada ${terbaik.map(x=>`${x.komponen} (${x.capaian.toFixed(2)}%)`).join(" dan ")}.`:"Belum terdapat data capaian yang cukup untuk menilai kekuatan utama.";
+  const fokus=perlu.length?`Area yang perlu menjadi perhatian adalah ${perlu.map(x=>`${x.komponen} (${x.capaian.toFixed(2)}%)`).join(" dan ")}.`:"";
+
+  const q=(question||"").toLowerCase();
+  if(mode==="ringkas" || q.includes("ringkas")){
+    return `${pembuka}\n${kekuatan}\n${fokus}${bukti.length?`\nBukti pendukung yang tersedia: ${bukti.join(", ")}.`:""}`;
+  }
+  if(mode==="rekomendasi" || q.includes("rekomendasi")){
+    return `${pembuka}\n\nRekomendasi:\n1. Pertahankan capaian pada indikator yang sudah baik dan dokumentasikan buktinya secara konsisten.\n2. Prioritaskan peningkatan pada ${rendah.length?rendah.map(x=>x.komponen).join(", "):"indikator yang capaian nilainya masih di bawah target"}.\n3. Perbarui dan lengkapi dokumen pendukung, terutama RPS/bahan ajar, presensi/BAP, publikasi, kegiatan pengabdian, dan sertifikasi sesuai indikator yang relevan.\n4. Lakukan evaluasi berkala agar capaian berikutnya dapat meningkat secara terukur.`;
+  }
+  if(mode==="tindak" || q.includes("tindak lanjut") || q.includes("tindaklanjut")){
+    return `${pembuka}\n\nTindak lanjut yang disarankan:\n• Menetapkan target peningkatan pada indikator dengan capaian terendah.\n• Melengkapi bukti pendukung sesuai indikator yang dinilai.\n• Melakukan monitoring capaian secara berkala dan mencatat progresnya.\n• Meninjau kembali hasil evaluasi pada periode penilaian berikutnya untuk memastikan perbaikan berkelanjutan.`;
+  }
+  return `${pembuka}\n\nCatatan evaluasi:\n${kekuatan} ${fokus}\n\nSecara umum, dosen menunjukkan ${kategori.toLowerCase()} dalam pelaksanaan kinerja berdasarkan data KPI yang diinput. Disarankan untuk mempertahankan indikator yang telah mencapai target dan memberikan perhatian lebih pada indikator yang masih memerlukan peningkatan. Dokumentasi bukti pendukung perlu dijaga agar setiap capaian dapat diverifikasi.`;
+}
+
+function askAI(mode){
+  const q=aiQuestionEl.value.trim();
+  const text=aiBuildText(mode,q);
+  lastAiText=text;
+  aiAnswerEl.textContent=text;
+  aiAnswerEl.classList.add("show");
+  aiActionsEl.style.display="flex";
+}
+
+document.getElementById("askAiBtn").addEventListener("click",()=>askAI(""));
+document.querySelectorAll("[data-ai]").forEach(btn=>btn.addEventListener("click",()=>{
+  const mode=btn.dataset.ai;
+  const prompts={
+    catatan:"Buatkan catatan evaluasi yang profesional.",
+    rekomendasi:"Buatkan rekomendasi perbaikan berdasarkan KPI.",
+    tindak:"Buatkan tindak lanjut yang terukur.",
+    ringkas:"Ringkas hasil KPI dosen ini."
+  };
+  aiQuestionEl.value=prompts[mode]||"";
+  askAI(mode);
+}));
+
+document.getElementById("useAiNoteBtn").addEventListener("click",()=>{
+  if(!lastAiText)return;
+  document.getElementById("catatan").value=lastAiText;
+  document.getElementById("catatan").focus();
+});
+
+document.getElementById("copyAiBtn").addEventListener("click",async()=>{
+  if(!lastAiText)return;
+  try{
+    await navigator.clipboard.writeText(lastAiText);
+    document.getElementById("status").textContent="✓ Hasil AI berhasil disalin.";
+  }catch(e){
+    const ta=document.createElement("textarea");
+    ta.value=lastAiText; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); ta.remove();
+    document.getElementById("status").textContent="✓ Hasil AI berhasil disalin.";
+  }
+});
+
+aiQuestionEl.addEventListener("keydown",e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==="Enter") askAI("");
+});
+
 function downloadWord(){
   try{
     const d=getDosen();
@@ -626,6 +773,11 @@ document.getElementById("resetBtn").addEventListener("click",()=>{
   document.getElementById("jabatan").value="";
   document.getElementById("periode").value="";
   document.getElementById("catatan").value="";
+  document.getElementById("aiQuestion").value="";
+  document.getElementById("aiAnswer").textContent="";
+  document.getElementById("aiAnswer").classList.remove("show");
+  document.getElementById("aiActions").style.display="none";
+  lastAiText="";
   document.getElementById("tanggal").value="";
   document.querySelectorAll(".capaian").forEach(x=>x.value=0);
   document.querySelectorAll(".evidenceCheck").forEach(x=>x.checked=false);
