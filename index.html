@@ -191,21 +191,45 @@ const kpiBody=document.getElementById("kpiBody");
 
 function populateDosen(){
   dosenEl.innerHTML="";
+
+  // Daftar dosen utama — nama + gelar tetap tampil lengkap
   DOSEN.forEach((d,i)=>{
     const o=document.createElement("option");
     o.value=String(i);
     o.textContent=d.name+(d.title?", "+d.title:"");
     dosenEl.appendChild(o);
   });
+
+  // Opsi untuk dosen yang belum ada di daftar
+  const other=document.createElement("option");
+  other.value="other";
+  other.textContent="＋ Dosen Lainnya...";
+  dosenEl.appendChild(other);
+
   dosenEl.value="0";
   syncDosen();
 }
+
 function syncDosen(){
-  const d=DOSEN[Number(dosenEl.value)];
+  if(dosenEl.value==="other"){
+    // Tampilkan input manual hanya ketika Dosen Lainnya dipilih
+    customBox.classList.remove("hidden");
+    nidnEl.value=customId.value.trim()||"";
+    return;
+  }
+
   customBox.classList.add("hidden");
+  const d=DOSEN[Number(dosenEl.value)];
   nidnEl.value=d?.id||"";
 }
+
 dosenEl.addEventListener("change",syncDosen);
+customId.addEventListener("input",()=>{
+  if(dosenEl.value==="other") nidnEl.value=customId.value;
+});
+customNama.addEventListener("input",()=>{
+  if(dosenEl.value==="other") nidnEl.value=customId.value;
+});
 
 function renderKPI(){
   kpiBody.innerHTML=KPI.map((k,i)=>`
@@ -241,6 +265,11 @@ function esc(s){
   return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 function getDosen(){
+  if(dosenEl.value==="other"){
+    const nama=customNama.value.trim()||"Dosen Baru";
+    const id=customId.value.trim()||"-";
+    return {name:nama,title:"",id:id};
+  }
   return DOSEN[Number(dosenEl.value)]||{name:"-",title:"",id:"-"};
 }
 function tanggalIndo(){
